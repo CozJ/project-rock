@@ -1,3 +1,6 @@
+import { Login } from "@/components/auth/Login"
+import Providers from "@/providers/provider"
+
 export default function RootLayout({
   children,
 }: {
@@ -6,7 +9,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body>{children}</body>
-    </html>
+      <Providers>
+        <body>
+          <Login />
+          {children}
+        </body>
+      </Providers>
+    </html >
   )
 }
