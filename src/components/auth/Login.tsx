@@ -7,11 +7,15 @@ interface FormValues {
     password: string;
 }
 
+export async function getServerSideProps(req: any, res: any) {
+
+}
+
 export const Login = () => {
     const { register, handleSubmit } = useForm<FormValues>();
 
     const onSubmit = (data: FormValues) => {
-        console.log(data)
+        
     }
 
     return (
