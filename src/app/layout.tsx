@@ -1,5 +1,9 @@
-import { Login } from "@/components/auth/Login"
+import { AuthButton } from "@/components/auth/AuthButton"
 import Providers from "@/providers/provider"
+import { Inter } from "@next/font/google"
+import '../styles/globals.css'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -10,8 +14,11 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <Providers>
-        <body>
-          <Login />
+        <body className={inter.className}>
+          <header className="w-full p-2 border-b-2 border-gray-300 shadow-xl flex flex-row justify-between">
+            <h1 className="text-2xl font-semibold">Project-Rock</h1>
+            <AuthButton />
+          </header>
           {children}
         </body>
       </Providers>
