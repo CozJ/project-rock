@@ -15,7 +15,9 @@ export default function provider({
 
     return (
         <QueryClientProvider client={queryClient}>
+            <SessionProvider>
                 {children}
+            </SessionProvider>
         </QueryClientProvider>
     )
 }
