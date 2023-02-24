@@ -14,4 +14,3 @@ export const AuthOptions = {
 };
 
 export default NextAuth(AuthOptions);
-
