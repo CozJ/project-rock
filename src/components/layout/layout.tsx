@@ -13,7 +13,7 @@ export default function RootLayout({
           <>
             <header className="w-full p-2 border-b-2 border-gray-300 shadow-xl flex flex-row justify-between items-center">
               <h1 className="text-2xl font-semibold">Project-Rock</h1>
-              <AuthButton />
+              <AuthButton className="p-2 px-4 bg-blue-400 rounded-xl font-semibold"/>
             </header>
             <main className={inter.className}>
             {children}
