@@ -14,7 +14,7 @@ export default function Home() {
   if (session) {
     return (
       <>
-        <div>
+        <div className='m-2 p-2 border rounded-xl bg-white border-gray-300 shadow-xl'>
           <h1>Welcome to Project-Rock, {session.user?.name}</h1>
         </div>
       </>
