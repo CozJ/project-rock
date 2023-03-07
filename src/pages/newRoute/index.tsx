@@ -3,8 +3,10 @@ import { ClimbingRoutes } from "@prisma/client";
 import { trpc } from "@/utils/trpc";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { V_GRADES } from "@/types/types";
+import { map } from "@trpc/server/observable";
 
-interface formData {
+interface IFormValues {
   name: string;
   description: string | null;
   grade: string | null;
@@ -23,16 +25,16 @@ export default function NewRoute() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<formData>();
+  } = useForm<IFormValues>();
 
   const createdRoute = trpc.addRoute.useMutation();
 
-  const onFormSubmit = (data: formData) => {
+  const onFormSubmit = (data: IFormValues) => {
     if (!session?.user?.email) return;
 
     if (data.date_started === null || data.date_finished === null) return;
 
-    const formData: formData = {
+    const formData: IFormValues = {
       name: data.name,
       description: data.description,
       grade: data.grade,
@@ -79,12 +81,17 @@ export default function NewRoute() {
         )}
 
         <label className="p-1 text-lg font-semibold">Grade</label>
-        <input
+        <select
           className="w-72 rounded-md border p-1"
-          type="text"
           placeholder="Grade"
           {...register("grade", { required: true })}
-        ></input>
+        >
+          {Object.entries(V_GRADES).map(([key, value]) => (
+            <option key={key} value={key}>
+              {value}
+            </option>
+          ))}
+        </select>
         {errors.grade && <p className="text-red-500">Grade is required</p>}
 
         <label className="p-1 text-lg font-semibold">Style</label>
