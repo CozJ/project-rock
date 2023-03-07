@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "ClimbingRoutes" ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "grade" DROP NOT NULL,
+ALTER COLUMN "style" DROP NOT NULL,
+ALTER COLUMN "location" DROP NOT NULL,
+ALTER COLUMN "date_started" DROP NOT NULL,
+ALTER COLUMN "date_finished" DROP NOT NULL,
+ALTER COLUMN "attempts" DROP NOT NULL;
