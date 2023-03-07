@@ -36,18 +36,12 @@ export default function NewRoute() {
       grade: data.grade,
       style: data.style,
       location: data.location,
-      date_started: data.date_started,
-      date_finished: data.date_finished,
+      date_started: new Date(data.date_started),
+      date_finished: new Date(data.date_finished),
       attempts: 0,
       userEmail: session.user.email,
     }
-
-    try {
-
     createdRoute.mutateAsync(formData);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const onErrors = (errors: any) => console.error(errors);
@@ -81,6 +75,7 @@ export default function NewRoute() {
         <input className='p-1 border rounded-md w-72' type='number' placeholder='Attempts' {...register('attempts', { required: true })}></input>
         {errors.attempts && <p className='text-red-500'>Attempts is required</p>}
         <button className='py-1 px-6 my-4 text-lg font-semibold bg-blue-400 rounded-md w-max'>Submit</button>
+        {createdRoute.error && <p className='text-red-500'>Error: {createdRoute.error.message}</p>}
       </form>
     </div>
   )
