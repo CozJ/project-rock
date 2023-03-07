@@ -13,7 +13,7 @@ datasource db {
 
 model Account {
   id                 String  @id @default(cuid())
-  userId             String
+  userId             String  
   type               String
   provider           String
   providerAccountId  String
@@ -46,6 +46,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  routes        ClimbingRoutes[]
 }
 
 model VerificationToken {
@@ -54,4 +55,18 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model ClimbingRoutes {
+  id            String    @id @default(cuid())
+  name          String    @db.VarChar(255)
+  description   String?    
+  grade         String?    @db.VarChar(16)
+  style         String?    @db.VarChar(24)
+  location      String?    
+  date_started  DateTime?  @db.Date
+  date_finished DateTime?  @db.Date
+  attempts      Int?                                      // potentially split into new table
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
 }
