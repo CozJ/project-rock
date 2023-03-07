@@ -60,13 +60,13 @@ model VerificationToken {
 model ClimbingRoutes {
   id            String    @id @default(cuid())
   name          String    @db.VarChar(255)
-  description   String    
-  grade         String    @db.VarChar(16)
-  style         String    @db.VarChar(24)
-  location      String    
-  date_started  DateTime  @db.Date
-  date_finished DateTime  @db.Date
-  attempts      Int                                      // potentially split into new table
+  description   String?    
+  grade         String?    @db.VarChar(16)
+  style         String?    @db.VarChar(24)
+  location      String?    
+  date_started  DateTime?  @db.Date
+  date_finished DateTime?  @db.Date
+  attempts      Int?                                      // potentially split into new table
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String
 }
