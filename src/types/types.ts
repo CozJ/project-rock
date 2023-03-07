@@ -3,8 +3,8 @@ export const FONT_GRADES = {
     f2: '2',
     f3: '3',
     f3A: '3a',
-    f3A: '3b',
-    f3A: '3c',
+    f3B: '3b',
+    f3C: '3c',
     f4A: '4a',
     f4B: '4b',
     f4C: '4c',
@@ -34,7 +34,7 @@ export const FONT_GRADES = {
     f9B: '9b',
     f9BP: '9b+',
     f9C: '9c',
-}
+} as const;
 
 export const V_GRADES = {
     VB: 'VB',
@@ -55,7 +55,7 @@ export const V_GRADES = {
     V14: 'V14',
     V15: 'V15',
     V16: 'V16',
-}
+} as const;
 
 export const BTG_GRADES = {
     MOD: 'Mod',
@@ -78,7 +78,7 @@ export const BTG_GRADES = {
     E10: 'E10',
     E11: 'E11',
     E12: 'E12',
-}
+} as const;
 
 export const YDS_GRADES = {
     YSD5_1: '5.1',
@@ -114,4 +114,4 @@ export const YDS_GRADES = {
     YSD5_15B: '5.15b',
     YSD5_15C: '5.15c',
     YSD5_15D: '5.15d',
-}
+} as const;
