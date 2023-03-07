@@ -1,23 +1,21 @@
-import { AuthButton } from "@/components/auth/AuthButton"
-import Providers from "@/providers/provider"
-import { Inter } from "@next/font/google"
+import { AuthButton } from "@/components/auth/AuthButton";
+import Providers from "@/providers/provider";
+import { Inter } from "@next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-          <>
-            <header className="w-full p-2 border-b-2 border-gray-300 shadow-xl flex flex-row justify-between items-center">
-              <h1 className="text-2xl font-semibold">Project-Rock</h1>
-              <AuthButton className="p-2 px-4 bg-blue-400 rounded-md font-semibold"/>
-            </header>
-            <main className={inter.className}>
-            {children}
-            </main >
-          </>
-  )
+    <>
+      <header className="flex w-full flex-row items-center justify-between border-b-2 border-gray-300 p-2 shadow-xl">
+        <h1 className="text-2xl font-semibold">Project-Rock</h1>
+        <AuthButton className="rounded-md bg-blue-400 p-2 px-4 font-semibold" />
+      </header>
+      <main className={inter.className}>{children}</main>
+    </>
+  );
 }
