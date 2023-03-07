@@ -6,12 +6,12 @@ import { useSession } from 'next-auth/react';
 
 interface formData {
   name: string;
-  description: string;
-  grade: string;
-  style: string;
-  location: string;
-  date_started: string;
-  date_finished: string;
+  description: string | null;
+  grade: string | null;
+  style: string | null;
+  location: string | null;
+  date_started: Date | null;
+  date_finished: Date | null;
   attempts: number;
   userEmail: string;
 }
@@ -20,13 +20,15 @@ export default function NewRoute() {
 
   const { data: session } = useSession()
 
-  const { register, handleSubmit, formState: {errors} } = useForm<ClimbingRoutes>();
+  const { register, handleSubmit, formState: {errors} } = useForm<formData>();
 
   const createdRoute = trpc.addRoute.useMutation();
 
-  const onFormSubmit = (data: ClimbingRoutes) => {
+  const onFormSubmit = (data: formData) => {
     
     if (!session?.user?.email) return;
+
+    if (data.date_started === null || data.date_finished === null) return;
 
     const formData: formData = {
       name: data.name,
@@ -34,13 +36,14 @@ export default function NewRoute() {
       grade: data.grade,
       style: data.style,
       location: data.location,
-      date_started: new Date(data.date_started).toDateString(),
-      date_finished:  new Date(data.date_finished).toDateString(),
+      date_started: data.date_started,
+      date_finished: data.date_finished,
       attempts: 0,
       userEmail: session.user.email,
     }
 
     try {
+
     createdRoute.mutateAsync(formData);
     } catch (error) {
       console.error(error);

@@ -5,13 +5,13 @@ import prisma from '@/lib/prisma';
 export const climbingRoutesRouter = router({
     addRoute: procedure.input(z.object({
         name: z.string(),
-        description: z.string(),
-        grade: z.string(),
-        style: z.string(),
-        location: z.string(),
-        date_started: z.string(),
-        date_finished: z.string(),
-        attempts: z.number(),
+        description: z.string().nullable(),
+        grade: z.string().nullable(),
+        style: z.string().nullable(),
+        location: z.string().nullable(),
+        date_started: z.date().nullable(),
+        date_finished: z.date().nullable(),
+        attempts: z.number().nullable(),
         userEmail: z.string()
     }),
     ).mutation(async (req) => {
@@ -23,8 +23,8 @@ export const climbingRoutesRouter = router({
                 grade: input.grade,
                 style: input.style,
                 location: input.location,
-                date_started: new Date(input.date_started),
-                date_finished: new Date(input.date_finished),
+                date_started: input.date_started,
+                date_finished: input.date_finished,
                 attempts: input.attempts,
                 user: {
                     connect: {
