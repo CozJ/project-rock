@@ -5,13 +5,12 @@ import Link from 'next/link';
 
 export default function Home() {
   const { data: session } = useSession()
-  const userList = trpc.userList.useQuery();
+  const userRoutes = trpc.getUsersRoutes.useQuery({userEmail: session?.user?.email});
 
-  if (!userList.data){
-    return (
-      <h1>Loading...</h1>
-    )
-  }
+  if (userRoutes.isLoading) return <div>Loading...</div>
+
+  if (userRoutes.error) return <div>{userRoutes.error.message}</div>
+
   if (session) {
     return (
       <>
@@ -27,7 +26,14 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {/* Put Map Here */}
+              {userRoutes.data?.map((route) => (
+                <tr key={route.id}>
+                  <td>{route.name}</td>
+                  <td>{route.description}</td>
+                  <td>{route.grade}</td>
+                  <td>{route.style}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <Link href={'/newRoute'}>

@@ -13,8 +13,7 @@ export const climbingRoutesRouter = router({
         date_finished: z.date().nullable(),
         attempts: z.number().nullable(),
         userEmail: z.string()
-    }),
-    ).mutation(async (req) => {
+    })).mutation(async (req) => {
         const { input } = req;
         const result = await prisma.climbingRoutes.create({
             data: {
@@ -28,16 +27,31 @@ export const climbingRoutesRouter = router({
                 attempts: input.attempts,
                 user: {
                     connect: {
-                        id: await getUserEmail(input.userEmail)
+                        id: await getUserIdFromEmail(input.userEmail)
                     }
                 }
             }
         })
         return result;
-    })
+    }),
+
+    getUsersRoutes: procedure.input(z.object({
+        userEmail: z.string().nullish()
+    })).query(async (req) => {
+        const { input } = req;
+        if (input.userEmail === null || input.userEmail === undefined) {
+            return null;
+        }
+        const result = await prisma.climbingRoutes.findMany({
+            where: {
+                userId: await getUserIdFromEmail(input.userEmail)
+            }
+        })
+        return result;
+    }),
 })
 
-async function getUserEmail(userEmail: string): Promise<any> {
+async function getUserIdFromEmail(userEmail: string): Promise<string | undefined> {
     const user = await prisma.user.findUnique({
         where: {
             email: userEmail
