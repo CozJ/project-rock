@@ -27,7 +27,7 @@ export default function NewRoute() {
     formState: { errors },
   } = useForm<IFormValues>();
 
-  const createdRoute = trpc.addRoute.useMutation();
+  const createdRoute = trpc.createRoute.useMutation();
 
   const onFormSubmit = (data: IFormValues) => {
     if (!session?.user?.email) return;

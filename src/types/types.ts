@@ -115,3 +115,12 @@ export const YDS_GRADES = {
     YSD5_15C: '5.15c',
     YSD5_15D: '5.15d',
 } as const;
+
+export const STYLES = {
+    sport: 'Sport',
+    trad: 'Trad',
+    boulder: 'Boulder',
+    aid: 'Aid',
+    ice: 'Ice',
+    mixed: 'Mixed',
+} as const;
