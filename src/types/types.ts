@@ -120,7 +120,4 @@ export const STYLES = {
     sport: 'Sport',
     trad: 'Trad',
     boulder: 'Boulder',
-    aid: 'Aid',
-    ice: 'Ice',
-    mixed: 'Mixed',
 } as const;
