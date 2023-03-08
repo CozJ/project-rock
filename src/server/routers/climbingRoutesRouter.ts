@@ -87,7 +87,8 @@ export const climbingRoutesRouter = router({
       attempts: z.number().nullable(),
       userEmail: z.string(),
     })
-    ).mutation(async (req) => {
+    )
+    .mutation(async (req) => {
         const { input } = req;
         const result = await prisma.climbingRoutes.update({
             where: {
@@ -116,7 +117,8 @@ export const climbingRoutesRouter = router({
     z.object({
         id: z.string(),
     })
-  ).mutation(async (req) => {
+    )
+    .mutation(async (req) => {
     const { input } = req;
     const result = await prisma.climbingRoutes.delete({
       where: {
@@ -124,7 +126,7 @@ export const climbingRoutesRouter = router({
       },
     });
     return result;
-  }),
+    }),
 });
 
 async function getUserIdFromEmail(
