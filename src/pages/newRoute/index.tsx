@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
-import { ClimbingRoutes } from "@prisma/client";
 import { trpc } from "@/utils/trpc";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { V_GRADES } from "@/types/types";
-import { map } from "@trpc/server/observable";
+import { STYLES, V_GRADES } from "@/types/types";
+import router from "next/router";
 
 interface IFormValues {
   name: string;
@@ -27,7 +26,7 @@ export default function NewRoute() {
     formState: { errors },
   } = useForm<IFormValues>();
 
-  const createdRoute = trpc.addRoute.useMutation();
+  const createdRoute = trpc.createRoute.useMutation();
 
   const onFormSubmit = (data: IFormValues) => {
     if (!session?.user?.email) return;
@@ -45,11 +44,7 @@ export default function NewRoute() {
       attempts: 0,
       userEmail: session.user.email,
     };
-    createdRoute.mutateAsync(formData);
-
-    if (createdRoute.isSuccess) {
-      redirect("/");
-    }
+    createdRoute.mutateAsync(formData).then(() => router.push("/"));
   };
 
   const onErrors = (errors: any) => console.error(errors);
@@ -95,12 +90,17 @@ export default function NewRoute() {
         {errors.grade && <p className="text-red-500">Grade is required</p>}
 
         <label className="p-1 text-lg font-semibold">Style</label>
-        <input
+        <select
           className="w-72 rounded-md border p-1"
-          type="text"
           placeholder="Style"
           {...register("style", { required: true })}
-        ></input>
+        >
+          {Object.entries(STYLES).map(([key, value]) => (
+            <option key={key} value={key}>
+              {value}
+            </option>
+          ))}
+        </select>
         {errors.style && <p className="text-red-500">Style is required</p>}
 
         <label className="p-1 text-lg font-semibold">Location</label>
