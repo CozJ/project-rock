@@ -9,6 +9,8 @@ export default function Home() {
     userEmail: session?.user?.email,
   });
 
+  const deleteMutation = trpc.deleteRoute.useMutation();
+
   if (userRoutes.isLoading) return <div>Loading...</div>;
 
   if (userRoutes.error) return <div>{userRoutes.error.message}</div>;
@@ -27,6 +29,8 @@ export default function Home() {
                 <th>Description</th>
                 <th>Grade</th>
                 <th>Style</th>
+                <th/>
+                <th/>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +40,16 @@ export default function Home() {
                   <td>{route.description}</td>
                   <td>{route.grade}</td>
                   <td>{route.style}</td>
+                  <td>
+                    <button className="bg-red-600 text-white" onClick={() => deleteMutation.mutate({id: route.id})}>
+                      delete
+                    </button>
+                  </td>
+                  <td>
+                    <button className="bg-green-600 text-white">
+                      view
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
