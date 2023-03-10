@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 
 // props
-interface AuthButtonProps {
+type AuthButtonProps = {
   className?: string;
 }
 
