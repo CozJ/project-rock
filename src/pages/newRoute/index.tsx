@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { trpc } from "@/utils/trpc";
+import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { STYLES, V_GRADES } from "@/types/types";
 import router from "next/router";
 
-interface IFormValues {
+type FormValues = {
   name: string;
   description: string | null;
   grade: string | null;
@@ -24,16 +24,16 @@ export default function NewRoute() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormValues>();
+  } = useForm<FormValues>();
 
   const createdRoute = trpc.createRoute.useMutation();
 
-  const onFormSubmit = (data: IFormValues) => {
+  const onFormSubmit = (data: FormValues) => {
     if (!session?.user?.email) return;
 
     if (data.date_started === null || data.date_finished === null) return;
 
-    const formData: IFormValues = {
+    const formData: FormValues = {
       name: data.name,
       description: data.description,
       grade: data.grade,
