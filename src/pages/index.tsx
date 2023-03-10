@@ -1,15 +1,13 @@
 import { useSession } from "next-auth/react";
-import { trpc } from "@/utils/trpc";
+import { api } from "@/utils/api";
 import { AuthButton } from "@/components/auth/AuthButton";
 import Link from "next/link";
+import { ClimbingRoutes } from "@prisma/client";
 
 export default function Home() {
   const { data: session } = useSession();
-  const userRoutes = trpc.getUsersRoutes.useQuery({
-    userEmail: session?.user?.email,
-  });
 
-  const deleteMutation = trpc.deleteRoute.useMutation();
+  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
 
   if (userRoutes.isLoading) return <div>Loading...</div>;
 
@@ -34,14 +32,14 @@ export default function Home() {
               </tr>
             </thead>
             <tbody>
-              {userRoutes.data?.map((route) => (
+              {userRoutes.data?.map((route: ClimbingRoutes) => (
                 <tr key={route.id}>
                   <td>{route.name}</td>
                   <td>{route.description}</td>
                   <td>{route.grade}</td>
                   <td>{route.style}</td>
                   <td>
-                    <button className="bg-red-600 text-white" onClick={() => deleteMutation.mutate({id: route.id})}>
+                    <button className="bg-red-600 text-white">
                       delete
                     </button>
                   </td>
