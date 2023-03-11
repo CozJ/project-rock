@@ -51,7 +51,7 @@ export default function Home() {
               ))}
             </tbody>
           </table>
-          <Link href={"/newRoute"}>
+          <Link href={"/climbingRoutes/newRoute"}>
             <div className="m-4 my-8 max-h-fit max-w-fit rounded-md bg-blue-400 p-2 px-4 font-semibold">
               Add New Route
             </div>
