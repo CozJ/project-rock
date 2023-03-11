@@ -1,21 +1,20 @@
 import { useSession } from "next-auth/react";
-import { trpc } from "@/utils/trpc";
-import { AuthButton } from "@/components/auth/AuthButton";
+import { api } from "@/utils/api";
+import { PromptLogin } from "@/components/auth/promptLogin";
 import Link from "next/link";
+import { ClimbingRoutes } from "@prisma/client";
 
 export default function Home() {
   const { data: session } = useSession();
-  const userRoutes = trpc.getUsersRoutes.useQuery({
-    userEmail: session?.user?.email,
-  });
-
-  const deleteMutation = trpc.deleteRoute.useMutation();
-
-  if (userRoutes.isLoading) return <div>Loading...</div>;
-
-  if (userRoutes.error) return <div>{userRoutes.error.message}</div>;
-
+  
+  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
+  
   if (session) {
+    
+    if (userRoutes.isLoading) return <div>Loading...</div>;
+
+    if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
+
     return (
       <>
         <div className="m-2 p-2">
@@ -29,32 +28,30 @@ export default function Home() {
                 <th>Description</th>
                 <th>Grade</th>
                 <th>Style</th>
-                <th/>
-                <th/>
+                <th />
+                <th />
               </tr>
             </thead>
             <tbody>
-              {userRoutes.data?.map((route) => (
+              {userRoutes.data?.map((route: ClimbingRoutes) => (
                 <tr key={route.id}>
                   <td>{route.name}</td>
                   <td>{route.description}</td>
                   <td>{route.grade}</td>
                   <td>{route.style}</td>
                   <td>
-                    <button className="bg-red-600 text-white" onClick={() => deleteMutation.mutate({id: route.id})}>
-                      delete
-                    </button>
+                    <button className="bg-red-600 text-white">delete</button>
                   </td>
                   <td>
-                    <button className="bg-green-600 text-white">
-                      view
-                    </button>
+                    <Link href={`/climbingRoutes/${route.id}`}>
+                      <button className="bg-green-600 text-white">view</button>
+                    </Link>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <Link href={"/newRoute"}>
+          <Link href={"/climbingRoutes/newRoute"}>
             <div className="m-4 my-8 max-h-fit max-w-fit rounded-md bg-blue-400 p-2 px-4 font-semibold">
               Add New Route
             </div>
@@ -63,10 +60,5 @@ export default function Home() {
       </>
     );
   }
-  return (
-    <div className="flex h-72 w-full flex-row items-center justify-center text-2xl">
-      <h1>Welcome to Project-Rock, Please&nbsp;</h1>
-      <AuthButton className="hover:underline" />
-    </div>
-  );
+  return (<PromptLogin />);
 }
