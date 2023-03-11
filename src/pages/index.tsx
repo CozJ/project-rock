@@ -6,12 +6,11 @@ import { ClimbingRoutes } from "@prisma/client";
 
 export default function Home() {
   const { data: session } = useSession();
-
+  
+  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
   
   if (session) {
     
-    const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
-
     if (userRoutes.isLoading) return <div>Loading...</div>;
 
     if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
@@ -29,8 +28,8 @@ export default function Home() {
                 <th>Description</th>
                 <th>Grade</th>
                 <th>Style</th>
-                <th/>
-                <th/>
+                <th />
+                <th />
               </tr>
             </thead>
             <tbody>
@@ -41,14 +40,12 @@ export default function Home() {
                   <td>{route.grade}</td>
                   <td>{route.style}</td>
                   <td>
-                    <button className="bg-red-600 text-white">
-                      delete
-                    </button>
+                    <button className="bg-red-600 text-white">delete</button>
                   </td>
                   <td>
-                    <button className="bg-green-600 text-white">
-                      view
-                    </button>
+                    <Link href={`/climbingRoutes/${route.id}`}>
+                      <button className="bg-green-600 text-white">view</button>
+                    </Link>
                   </td>
                 </tr>
               ))}
@@ -63,7 +60,5 @@ export default function Home() {
       </>
     );
   }
-  return (
-    <PromptLogin />
-  );
+  return (<PromptLogin />);
 }
