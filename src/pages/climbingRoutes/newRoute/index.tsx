@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { STYLES, V_GRADES } from "@/types/types";
 import router from "next/router";
+import { PromptLogin } from "@/components/auth/promptLogin";
 
 type FormValues = {
   name: string;
@@ -14,11 +15,13 @@ type FormValues = {
   date_started: Date | null;
   date_finished: Date | null;
   attempts: number;
-  userEmail: string;
-}
+  userId: string;
+};
 
 export default function NewRoute() {
   const { data: session } = useSession();
+
+  if (!session) return <PromptLogin />;
 
   const {
     register,
@@ -26,7 +29,7 @@ export default function NewRoute() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const createdRoute = trpc.createRoute.useMutation();
+  const createdRoute = api.climbingRoutes.createRoute.useMutation();
 
   const onFormSubmit = (data: FormValues) => {
     if (!session?.user?.email) return;
@@ -42,7 +45,7 @@ export default function NewRoute() {
       date_started: new Date(data.date_started),
       date_finished: new Date(data.date_finished),
       attempts: 0,
-      userEmail: session.user.email,
+      userId: session.user.id,
     };
     createdRoute.mutateAsync(formData).then(() => router.push("/"));
   };
