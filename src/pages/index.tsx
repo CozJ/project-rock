@@ -1,19 +1,21 @@
 import { useSession } from "next-auth/react";
 import { api } from "@/utils/api";
-import { AuthButton } from "@/components/auth/AuthButton";
+import { PromptLogin } from "@/components/auth/promptLogin";
 import Link from "next/link";
 import { ClimbingRoutes } from "@prisma/client";
 
 export default function Home() {
   const { data: session } = useSession();
 
-  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
-
-  if (userRoutes.isLoading) return <div>Loading...</div>;
-
-  if (userRoutes.error) return <div>{userRoutes.error.message}</div>;
-
+  
   if (session) {
+    
+    const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
+
+    if (userRoutes.isLoading) return <div>Loading...</div>;
+
+    if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
+
     return (
       <>
         <div className="m-2 p-2">
@@ -62,9 +64,6 @@ export default function Home() {
     );
   }
   return (
-    <div className="flex h-72 w-full flex-row items-center justify-center text-2xl">
-      <h1>Welcome to Project-Rock, Please&nbsp;</h1>
-      <AuthButton className="hover:underline" />
-    </div>
+    <PromptLogin />
   );
 }
