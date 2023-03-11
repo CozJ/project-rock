@@ -1,5 +1,4 @@
 import { AuthButton } from "@/components/auth/AuthButton";
-import Providers from "@/providers/provider";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
 
