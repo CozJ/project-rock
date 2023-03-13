@@ -7,8 +7,10 @@ import { RouteCard } from "@/components/homePage/RouteCard";
 
 export default function Home() {
   const { data: session } = useSession();
+
+  const queryEnabled = session ? true : false;
   
-  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery();
+  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery(undefined, {enabled: queryEnabled});
   
   if (session) {
     
@@ -22,37 +24,17 @@ export default function Home() {
           <h1 className="m-4 py-2 text-2xl font-bold">
             Welcome to Project-Rock, {session.user?.name}
           </h1>
-          <RouteCard />
-          <table className="text-bold m-4 w-1/2 border-b-2 p-8 text-left">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Grade</th>
-                <th>Style</th>
-                <th />
-                <th />
-              </tr>
-            </thead>
-            <tbody>
               {userRoutes.data?.map((route: ClimbingRoutes) => (
-                <tr key={route.id}>
-                  <td>{route.name}</td>
-                  <td>{route.description}</td>
-                  <td>{route.grade}</td>
-                  <td>{route.style}</td>
-                  <td>
-                    <button className="bg-red-600 text-white">delete</button>
-                  </td>
-                  <td>
-                    <Link href={`/climbingRoutes/${route.id}`}>
-                      <button className="bg-green-600 text-white">view</button>
-                    </Link>
-                  </td>
-                </tr>
+                <RouteCard
+                  key={route.id}
+                  id={route.id}
+                  name={route.name}
+                  style={route.style}
+                  grade={route.grade}
+                  status={"Unfinished"}
+                  attempts={route.attempts}
+                />
               ))}
-            </tbody>
-          </table>
           <Link href={"/climbingRoutes/newRoute"}>
             <div className="m-4 my-8 max-h-fit max-w-fit rounded-md bg-blue-400 p-2 px-4 font-semibold">
               Add New Route
