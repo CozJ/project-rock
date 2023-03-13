@@ -3,6 +3,7 @@ import { api } from "@/utils/api";
 import { PromptLogin } from "@/components/auth/promptLogin";
 import Link from "next/link";
 import { ClimbingRoutes } from "@prisma/client";
+import { RouteCard } from "@/components/homePage/RouteCard";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -21,6 +22,7 @@ export default function Home() {
           <h1 className="m-4 py-2 text-2xl font-bold">
             Welcome to Project-Rock, {session.user?.name}
           </h1>
+          <RouteCard />
           <table className="text-bold m-4 w-1/2 border-b-2 p-8 text-left">
             <thead>
               <tr>
