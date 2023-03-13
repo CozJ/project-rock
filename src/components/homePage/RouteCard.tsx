@@ -3,31 +3,36 @@ import React from "react";
 type RouteCardProps = {
   id: string;
   name: string;
-  style: string;
-  grade: string;
-  status: string;
-  attempts: number;
+  style: string | null;
+  grade: string | null;
+  status: string | null;
+  attempts: number | null;
 };
 
-//props: RouteCardProps
-
-export const RouteCard = () => {
+export const RouteCard = (props: RouteCardProps) => {
   return (
-    <div className="flex max-h-fit max-w-xl flex-row rounded-xl border-2 px-4 py-2 shadow-md hover:shadow-xl">
-      <div className="flex w-4/5 flex-col">
-        <h1 className="font-bold">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit
-        </h1>
-        <div className="flex flex-row justify-around">
-          <p>style: Sport</p>
-          <p>grade: 6b+</p>
-          <p>status: Unfinished</p>
+    <div className="m-1 flex max-w-xl flex-col rounded-lg border-2 p-1 shadow-lg">
+      <h1 className="h-12 max-w-full break-words font-semibold">
+        {props.name} - {props.grade}
+      </h1>
+      <div className="flex h-12 max-w-full flex-row justify-between">
+        <div className="">
+          <p className="">style: {props.style}</p>
+          <p className="">status: {props.status}</p>
         </div>
-      </div>
-      <div className="flex w-1/5 items-center justify-center">
-        <button className="rounded-md border px-2 py-1">-</button>
-        <p className="px-2 py-1 font-bold">6</p>
-        <button className="rounded-md border px-2 py-1">+</button>
+        <div className="flex items-center justify-center">
+          <div className="inline-flex">
+            <button className="rounded-l bg-gray-300 py-2 px-4 font-bold text-gray-800 hover:bg-gray-400">
+              -
+            </button>
+            <div className="bg-gray-300 py-2 px-4 font-bold">
+              {props.attempts}
+            </div>
+            <button className="rounded-r bg-gray-300 py-2 px-4 font-bold text-gray-800 hover:bg-gray-400">
+              +
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
