@@ -23,7 +23,7 @@ export const climbingRoutesRouter = createTRPCRouter({
       orderBy: {
         date_started: "desc",
       },
-      take: 5,
+      take: 6,
     });
   }),
 

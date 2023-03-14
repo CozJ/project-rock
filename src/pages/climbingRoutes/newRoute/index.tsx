@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { STYLES, V_GRADES } from "@/types/types";
+import { FONT_GRADES, STYLES, V_GRADES } from "@/types/types";
 import router from "next/router";
 import { PromptLogin } from "@/components/auth/promptLogin";
 
@@ -84,8 +84,8 @@ export default function NewRoute() {
           placeholder="Grade"
           {...register("grade", { required: true })}
         >
-          {Object.entries(V_GRADES).map(([key, value]) => (
-            <option key={key} value={key}>
+          {Object.entries(FONT_GRADES).map(([key, value]) => (
+            <option key={key} value={value}>
               {value}
             </option>
           ))}
@@ -99,7 +99,7 @@ export default function NewRoute() {
           {...register("style", { required: true })}
         >
           {Object.entries(STYLES).map(([key, value]) => (
-            <option key={key} value={key}>
+            <option key={key} value={value}>
               {value}
             </option>
           ))}
