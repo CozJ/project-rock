@@ -7,12 +7,23 @@ import {
 } from "@/server/api/trpc";
 
 export const climbingRoutesRouter = createTRPCRouter({
-  getUserRoutes: protectedProcedure
-  .query(({ ctx }) => {
+  getUserRoutes: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.climbingRoutes.findMany({
       where: {
         userId: ctx.session.user.id,
       },
+    });
+  }),
+
+  getRecentRoutes: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.climbingRoutes.findMany({
+      where: {
+        userId: ctx.session.user.id,
+      },
+      orderBy: {
+        date_started: "desc",
+      },
+      take: 6,
     });
   }),
 
