@@ -11,11 +11,11 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <header className="flex w-full flex-row items-center justify-between border-b-2 border-gray-300 p-2 shadow-xl">
+      <header className="flex w-full flex-row items-center justify-between p-2 shadow-xl">
         <Link href={"/"}>
-          <h1 className="text-2xl font-semibold">Project-Rock</h1>
+          <h1 className="text-2xl font-semibold text-slate-600">Project-Rock</h1>
         </Link>
-        <AuthButton className="rounded-md bg-blue-400 p-2 px-4 font-semibold" />
+        <AuthButton className="rounded-md bg-slate-600 text-slate-100 p-2 px-4 font-semibold" />
       </header>
       <main className={inter.className}>{children}</main>
     </>
