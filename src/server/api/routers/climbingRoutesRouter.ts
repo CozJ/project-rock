@@ -47,10 +47,10 @@ export const climbingRoutesRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         description: z.string().nullable(),
-        grade: z.string().nullable(),
-        style: z.string().nullable(),
+        grade: z.string(),
+        style: z.string(),
         location: z.string().nullable(),
-        date_started: z.date().nullable(),
+        date_started: z.date(),
         date_finished: z.date().nullable(),
         attempts: z.number().nullable(),
         userId: z.string(),
