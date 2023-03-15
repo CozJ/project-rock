@@ -52,6 +52,7 @@ export const climbingRoutesRouter = createTRPCRouter({
         location: z.string().nullable(),
         date_started: z.date(),
         date_finished: z.date().nullable(),
+        status: z.string(),
         attempts: z.number().nullable(),
         userId: z.string(),
       })
@@ -66,6 +67,7 @@ export const climbingRoutesRouter = createTRPCRouter({
           location: input.location,
           date_started: input.date_started,
           date_finished: input.date_finished,
+          status: input.status,
           attempts: input.attempts,
           userId: input.userId,
         },
@@ -83,6 +85,7 @@ export const climbingRoutesRouter = createTRPCRouter({
         location: z.string().nullable(),
         date_started: z.string().nullable(),
         date_finished: z.string().nullable(),
+        status: z.string().nullable(),
         attempts: z.number().nullable(),
         userId: z.string(),
       })
@@ -100,6 +103,7 @@ export const climbingRoutesRouter = createTRPCRouter({
           location: input.location,
           date_started: input.date_started,
           date_finished: input.date_finished,
+          status: input.status,
           attempts: input.attempts,
           userId: input.userId,
         },
