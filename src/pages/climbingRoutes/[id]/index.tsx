@@ -27,6 +27,8 @@ export default function ClimbingRoute() {
         <p>{route.data?.style}</p>
         <p className="text-lg font-semibold">Location</p>
         <p>{route.data?.location}</p>
+        <p className="text-lg font-semibold">Status</p>
+        <p>{route.data?.status}</p>
         <p className="text-lg font-semibold">Date Added</p>
         <p>{route.data?.date_started?.toDateString()}</p>
         <p className="text-lg font-semibold">Date Finished</p>
