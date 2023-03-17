@@ -46,14 +46,14 @@ export const climbingRoutesRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string(),
-        description: z.string().nullable(),
+        description: z.string().optional(),
         grade: z.string(),
         style: z.string(),
-        location: z.string().nullable(),
+        location: z.string().optional(),
         date_started: z.date(),
-        date_finished: z.date().nullable(),
+        date_finished: z.date().optional(),
         status: z.string(),
-        attempts: z.number().nullable(),
+        attempts: z.number(),
         userId: z.string(),
       })
     )
@@ -78,15 +78,15 @@ export const climbingRoutesRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string(),
-        name: z.string(),
-        description: z.string().nullable(),
-        grade: z.string(),
-        style: z.string(),
-        location: z.string().nullable(),
-        date_started: z.string(),
-        date_finished: z.string().nullable(),
-        status: z.string(),
-        attempts: z.number().nullable(),
+        name: z.string().optional(),
+        description: z.string().optional(),
+        grade: z.string().optional(),
+        style: z.string().optional(),
+        location: z.string().optional(),
+        date_started: z.date().optional(),
+        date_finished: z.date().optional(),
+        status: z.string().optional(),
+        attempts: z.number().optional(),
         userId: z.string(),
       })
     )
@@ -96,15 +96,15 @@ export const climbingRoutesRouter = createTRPCRouter({
           id: input.id,
         },
         data: {
-          name: input.name,
-          description: input.description,
-          grade: input.grade,
-          style: input.style,
-          location: input.location,
-          date_started: input.date_started,
-          date_finished: input.date_finished,
-          status: input.status,
-          attempts: input.attempts,
+          name: input.name || undefined,
+          description: input.description || undefined,
+          grade: input.grade || undefined,
+          style: input.style || undefined,
+          location: input.location || undefined,
+          date_started: input.date_started || undefined,
+          date_finished: input.date_finished || undefined,
+          status: input.status || undefined,
+          attempts: input.attempts || undefined,
           userId: input.userId,
         },
       });

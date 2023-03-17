@@ -15,12 +15,12 @@ import { useState } from "react";
 
 type FormValues = {
   name: string;
-  description: string | null;
+  description: string | undefined;
   grade: string;
   style: string;
-  location: string | null;
+  location: string | undefined;
   date_started: Date;
-  date_finished: Date | null;
+  date_finished: Date | undefined;
   status: string;
   attempts: number;
   userId: string;
@@ -53,7 +53,7 @@ export default function NewRoute() {
         style: data.style,
         location: data.location,
         date_started: new Date(data.date_started),
-        date_finished: null,
+        date_finished: undefined,
         status: STATUS.new,
         attempts: 0,
         userId: session.user.id,
