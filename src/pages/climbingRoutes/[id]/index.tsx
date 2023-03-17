@@ -2,6 +2,9 @@ import { PromptLogin } from "@/components/auth/promptLogin";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { RouteCard } from "@/components/common/RouteCard";
+import { useForm } from "react-hook-form";
+import { InlineEditInput } from "@/components/common/InlineEditInput";
 
 export default function ClimbingRoute() {
   const router = useRouter();
@@ -16,26 +19,23 @@ export default function ClimbingRoute() {
 
     if (route.error) return <div>Error: {route.error.message}</div>;
 
+
     return (
-      <div className="m-4 p-4">
-        <h1 className="text-xl font-bold">{route.data?.name}</h1>
-        <p className="text-lg font-semibold">Description</p>
-        <p>{route.data?.description}</p>
-        <p className="text-lg font-semibold">Grade</p>
-        <p>{route.data?.grade}</p>
-        <p className="text-lg font-semibold">Style</p>
-        <p>{route.data?.style}</p>
-        <p className="text-lg font-semibold">Location</p>
-        <p>{route.data?.location}</p>
-        <p className="text-lg font-semibold">Status</p>
-        <p>{route.data?.status}</p>
-        <p className="text-lg font-semibold">Date Added</p>
-        <p>{route.data?.date_started?.toDateString()}</p>
-        <p className="text-lg font-semibold">Date Finished</p>
-        <p>{route.data?.date_finished?.toDateString()}</p>
-        <p className="text-lg font-semibold">Attempts</p>
-        <p>{route.data?.attempts}</p>
-      </div>
+      <>
+        <div className="m-2 flex flex-col items-center p-2">
+          <div className="container flex flex-col items-end justify-between p-2 text-slate-600">
+            <div className="flex w-full flex-row justify-between">
+              <h1 className="text-2xl font-bold">{route.data.name}</h1>
+            </div>
+            <div className="flex w-full flex-col justify-center border-t p-4 md:flex-row">
+              <div className="m-4 flex w-full flex-col">
+                <InlineEditInput fieldValue="Name" value={route.data.name} onChange={(value) => console.log(value)} required={true} />
+              </div>
+              <div className="m-4 flex w-full flex-col"></div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
   return <PromptLogin />;

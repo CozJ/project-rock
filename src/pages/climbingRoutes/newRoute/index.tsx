@@ -42,7 +42,7 @@ export default function NewRoute() {
 
   if (session) {
     const onFormSubmit = (data: FormValues) => {
-      if (!session?.user?.email) return;
+      if (!session?.user?.id) return;
 
       if (data.date_started === null || data.date_finished === null) return;
 
