@@ -6,6 +6,7 @@ import { RouteCard } from "@/components/common/RouteCard";
 import { useForm } from "react-hook-form";
 import { InlineTextEdit } from "@/components/common/InlineTextEdit";
 import { InlineTextAreaEdit } from "@/components/common/InlineTextAreaEdit";
+import { InlineDateEdit } from "@/components/common/InlineDateEdit";
 
 type FormValues = {
   id: string;
@@ -38,12 +39,12 @@ export default function ClimbingRoute() {
     return (
       <>
         <div className="m-2 flex flex-col items-center p-2">
-          <div className="container flex flex-col items-end justify-between p-2 text-slate-600">
+          <div className="container flex flex-col items-end justify-between text-slate-600">
             <div className="flex w-full flex-row justify-between">
               <h1 className="text-2xl font-bold">{route.data.name}</h1>
             </div>
             <div className="flex w-full flex-col justify-center border-t p-4 md:flex-row">
-              <div className="m-4 flex w-full flex-col">
+              <div className="m-2 flex w-full flex-col">
                 <InlineTextEdit
                   defaultStyle="text-xl pr-2"
                   formStyle="w-full h-full"
@@ -77,12 +78,51 @@ export default function ClimbingRoute() {
                   required={true}
                 />
                 <InlineTextAreaEdit
-                  defaultStyle="h-52 w-full max-w-4xl resize-none rounded-md p-1"
-                  inputStyle="h-52 w-full max-w-4xl resize-none rounded-md border p-1"
+                  defaultStyle="min-h-fit w-fit text-xl w-full max-w-4xl resize-none rounded-md pr-2"
                   formStyle="w-full h-full border-none"
+                  inputStyle="h-52 w-full max-w-4xl resize-none rounded-md border p-1"
                   value={route.data.description as string | undefined}
-                  onChange={(value) => console.log(value)}
+                  onChange={(value) => 
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        description: value,
+                        userId: session.user.id,
+                      } as FormValues).then(() => route.refetch())
+                    }
                   required={true}
+                />
+                <InlineDateEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.date_started as Date | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        date_started: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineDateEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.date_finished as Date | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        date_finished: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={false}
                 />
               </div>
               <div className="m-4 flex w-full flex-col"></div>

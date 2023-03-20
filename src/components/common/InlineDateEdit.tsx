@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 
-type InlineTextAreaEditProps = {
-  value: string | undefined;
-  onChange: (value: string) => void;
+type InlineDateEditProps = {
+  value: Date | undefined;
+  onChange: (value: Date | undefined) => void;
   required: boolean;
   defaultStyle: string;
   formStyle: string;
   inputStyle: string;
 };
 
-export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
+export const InlineDateEdit = (props: InlineDateEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setInputValue] = useState(props.value);
 
@@ -32,6 +32,10 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
 
   const onFormSubmit = (data: any) => {
 
+    if (data.value === "Invalid Date") {
+      data.value = undefined;
+    }
+
     console.log(data);
     setValue("value", data.value);
     setInputValue(data.value);
@@ -46,10 +50,11 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
           onSubmit={handleSubmit(onFormSubmit, onErrors)}
           className={props.formStyle}
         >
-          <textarea
+          <input
             className={props.inputStyle}
-            defaultValue={value}
-            {...register("value", { required: props.required })}
+            type="date"
+            defaultValue={value ? value.toISOString().substring(0, 10) : ""}
+            {...register("value", { required: props.required, valueAsDate: true })}
           />
           {errors.value && <span>This field is required</span>}
           <div className="my-1 w-36 font-semibold text-slate-100">
@@ -69,12 +74,12 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
           </div>
         </form>
       ) : (
-        <div className="flex flex-row items-start">
-          <span className={props.defaultStyle}>{value}</span>
+        <div className="flex flex-row items-center">
+          <span className={props.defaultStyle}>{value ? value.toDateString() : "Not Completed"}</span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon
-              className="text-center text-slate-300"
-              fontSize="small"
+            <BorderColorIcon 
+                className="text-center text-slate-300"
+                fontSize="small"
             />
           </button>
         </div>
