@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { InlineTextEdit } from "@/components/common/InlineTextEdit";
 import { InlineTextAreaEdit } from "@/components/common/InlineTextAreaEdit";
 import { InlineDateEdit } from "@/components/common/InlineDateEdit";
+import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
+import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
+import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 
 type FormValues = {
   id: string;
@@ -82,15 +85,16 @@ export default function ClimbingRoute() {
                   formStyle="w-full h-full border-none"
                   inputStyle="h-52 w-full max-w-4xl resize-none rounded-md border p-1"
                   value={route.data.description as string | undefined}
-                  onChange={(value) => 
+                  onChange={(value) =>
                     updateRoute
                       .mutateAsync({
                         id: route.data.id,
                         description: value,
                         userId: session.user.id,
-                      } as FormValues).then(() => route.refetch())
-                    }
-                  required={true}
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={false}
                 />
                 <InlineDateEdit
                   defaultStyle="text-xl pr-2"
@@ -123,6 +127,54 @@ export default function ClimbingRoute() {
                       .then(() => route.refetch())
                   }
                   required={false}
+                />
+                <InlineUpdateGrade
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.grade as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        grade: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineUpdateStyle
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.style as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        style: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineUpdatStatus
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.status as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        status: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
                 />
               </div>
               <div className="m-4 flex w-full flex-col"></div>

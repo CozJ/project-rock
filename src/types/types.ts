@@ -127,6 +127,6 @@ export const STATUS = {
     learning: 'Learning',
     linking: 'Linking',
     redpoint: 'Redpoint',
-    unfinished: 'Unfinished',
     backlog: 'Backlog',
+    completed: 'Completed',
 }

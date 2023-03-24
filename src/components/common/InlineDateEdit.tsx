@@ -31,7 +31,6 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
   const onErrors = (errors: any) => console.error(errors);
 
   const onFormSubmit = (data: any) => {
-
     if (data.value === "Invalid Date") {
       data.value = undefined;
     }
@@ -54,7 +53,10 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
             className={props.inputStyle}
             type="date"
             defaultValue={value ? value.toISOString().substring(0, 10) : ""}
-            {...register("value", { required: props.required, valueAsDate: true })}
+            {...register("value", {
+              required: props.required,
+              valueAsDate: true,
+            })}
           />
           {errors.value && <span>This field is required</span>}
           <div className="my-1 w-36 font-semibold text-slate-100">
@@ -75,11 +77,13 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
         </form>
       ) : (
         <div className="flex flex-row items-center">
-          <span className={props.defaultStyle}>{value ? value.toDateString() : "Not Completed"}</span>
+          <span className={props.defaultStyle}>
+            {value ? value.toDateString() : "Not Completed"}
+          </span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon 
-                className="text-center text-slate-300"
-                fontSize="small"
+            <BorderColorIcon
+              className="text-center text-slate-300"
+              fontSize="small"
             />
           </button>
         </div>
