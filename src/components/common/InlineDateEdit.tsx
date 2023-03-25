@@ -31,11 +31,16 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
   const onErrors = (errors: any) => console.error(errors);
 
   const onFormSubmit = (data: any) => {
-    if (data.value === "Invalid Date") {
-      data.value = undefined;
+
+    if (data.value == "Invalid Date") {
+      setValue("value", undefined);
+      setInputValue(undefined);
+      props.onChange(undefined);
+      setIsEditing(false);
+      return;
     }
 
-    console.log(data);
+    console.log(data.value);
     setValue("value", data.value);
     setInputValue(data.value);
     props.onChange(data.value);
