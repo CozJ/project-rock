@@ -2,6 +2,7 @@ import { BTG_GRADES, FONT_GRADES, V_GRADES, YDS_GRADES } from "@/types/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import getGradeSchemeFromValue from "@/utils/getGradeSchemeFromValue";
 
 type InlineGradeEditProps = {
   value: string | undefined;
@@ -14,7 +15,7 @@ type InlineGradeEditProps = {
 
 export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [gradeScheme, setGradeScheme] = useState<string | null>(null);
+  const [gradeScheme, setGradeScheme] = useState<string | undefined>(getGradeSchemeFromValue(props.value) || undefined);
   const [value, setInputValue] = useState(props.value);
 
   const {
@@ -51,7 +52,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "V" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => setGradeScheme("V")}
+                onClick={() => {setGradeScheme("V"); setInputValue(V_GRADES.V0); }}
               >
                 V
               </button>
@@ -60,7 +61,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "FONT" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => setGradeScheme("FONT")}
+                onClick={() => {setGradeScheme("FONT"); setInputValue(FONT_GRADES.f1); }}
               >
                 Font
               </button>
@@ -69,7 +70,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "BTG" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => setGradeScheme("BTG")}
+                onClick={() => {setGradeScheme("BTG"); setInputValue(BTG_GRADES.MOD); }}
               >
                 B.Trad
               </button>
@@ -78,7 +79,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "YDS" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => setGradeScheme("YDS")}
+                onClick={() => {setGradeScheme("YDS"); setInputValue(YDS_GRADES.YSD5_1);}}
               >
                 USA
               </button>
@@ -86,6 +87,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
             <select
               className="w-full max-w-4xl rounded-b-md border p-1"
               placeholder="Grade"
+              defaultValue={value}
               {...register("grade", { required: true })}
             >
               {gradeScheme === "V" &&
