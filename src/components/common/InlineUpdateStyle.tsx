@@ -14,7 +14,7 @@ type InlineStyleEditProps = {
 
 export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+  const [selectedStyle, setSelectedStyle] = useState<string | undefined>(props.value);
   const [value, setInputValue] = useState(props.value);
 
   const {
@@ -55,6 +55,7 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
                 type="radio"
                 id={STYLES.sport}
                 value={STYLES.sport}
+                checked={props.value == STYLES.sport}
                 onClick={() => setSelectedStyle(STYLES.sport)}
                 {...register("style", { required: true })}
                 className="invisible"
@@ -71,6 +72,7 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
                 type="radio"
                 id={STYLES.boulder}
                 value={STYLES.boulder}
+                checked={props.value === STYLES.boulder}
                 onClick={() => setSelectedStyle(STYLES.boulder)}
                 {...register("style", { required: true })}
                 className="invisible"
@@ -87,6 +89,7 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
                 type="radio"
                 id={STYLES.trad}
                 value={STYLES.trad}
+                checked={props.value === STYLES.trad}
                 onClick={() => setSelectedStyle(STYLES.trad)}
                 {...register("style", { required: true })}
                 className="invisible"

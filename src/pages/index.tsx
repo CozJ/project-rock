@@ -32,7 +32,7 @@ export default function Home() {
             </div>
             <div className="flex max-h-96 w-full flex-row flex-wrap justify-start overflow-y-scroll border-t border-b sm:overflow-hidden">
               {userRoutes.data?.map((route: ClimbingRoutes) => (
-                <div className="w-full p-2 sm:w-1/2 md:w-1/3">
+                <div key={route.id} className="w-full p-2 sm:w-1/2 md:w-1/3">
                   <RouteCard
                     key={route.id}
                     id={route.id}
