@@ -124,8 +124,7 @@ export const STYLES = {
 
 export const STATUS = {
     new: 'New',
-    learning: 'Learning',
-    linking: 'Linking',
+    inProgress: 'In Progress',
     redpoint: 'Redpoint',
     backlog: 'Backlog',
     completed: 'Completed',

@@ -14,7 +14,7 @@ type InlineStatusEditProps = {
 
 export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+  const [selectedStyle, setSelectedStyle] = useState<string | undefined>(props.value);
   const [value, setInputValue] = useState(props.value);
 
   const {
@@ -62,41 +62,25 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
               {STATUS.new}
             </label>
             <label
-              htmlFor={STATUS.learning}
+              htmlFor={STATUS.inProgress}
               className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.learning && `bg-slate-800`
+                selectedStyle === STATUS.inProgress && `bg-slate-800`
               }`}
             >
               <input
                 type="radio"
-                id={STATUS.learning}
-                value={STATUS.learning}
-                onClick={() => setSelectedStyle(STATUS.learning)}
+                id={STATUS.inProgress}
+                value={STATUS.inProgress}
+                onClick={() => setSelectedStyle(STATUS.inProgress)}
                 {...register("style", { required: true })}
                 className="invisible"
               />
-              {STATUS.learning}
-            </label>
-            <label
-              htmlFor={STATUS.linking}
-              className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.linking && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.linking}
-                value={STATUS.linking}
-                onClick={() => setSelectedStyle(STATUS.linking)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.linking}
+              {STATUS.inProgress}
             </label>
             <label
               htmlFor={STATUS.redpoint}
               className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.linking && `bg-slate-800`
+                selectedStyle === STATUS.redpoint && `bg-slate-800`
               }`}
             >
               <input
