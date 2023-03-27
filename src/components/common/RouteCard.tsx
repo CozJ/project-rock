@@ -1,3 +1,5 @@
+import { api } from "@/utils/api";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -7,10 +9,39 @@ type RouteCardProps = {
   style: string | null;
   grade: string | null;
   status: string | null;
-  attempts: number | null;
+  attempts: number;
 };
 
 export const RouteCard = (props: RouteCardProps) => {
+  const { data: session } = useSession();
+
+  const updateRoute = api.climbingRoutes.updateRoute.useMutation();
+  const [attempts, setAttempts] = React.useState(props.attempts);
+
+  const removeAttempt = () => {
+    if (session) {
+      if (props.attempts > 0) {
+        updateRoute.mutateAsync({
+          id: props.id,
+          attempts: props.attempts - 1,
+          userId: session.user.id,
+        });
+        setAttempts(attempts - 1);
+      }
+    }
+  };
+
+  const addAttempt = () => {
+    if (session) {
+      updateRoute.mutateAsync({
+        id: props.id,
+        attempts: props.attempts + 1,
+        userId: session.user.id,
+      });
+      setAttempts(attempts + 1);
+    }
+  };
+
   return (
     <Link href={`climbingRoutes/${props.id}`}>
       <div className="h-32 w-full rounded-xl border border-slate-200 p-3 font-semibold text-slate-800 hover:shadow-xl">
@@ -31,6 +62,7 @@ export const RouteCard = (props: RouteCardProps) => {
               type="button"
               onClick={(e) => {
                 e.preventDefault();
+                removeAttempt();
               }}
             >
               -
@@ -41,13 +73,14 @@ export const RouteCard = (props: RouteCardProps) => {
                 e.preventDefault();
               }}
             >
-              {props.attempts}
+              {attempts}
             </div>
             <button
               className="w-8 rounded-r bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
               type="button"
               onClick={(e) => {
                 e.preventDefault();
+                addAttempt();
               }}
             >
               +
