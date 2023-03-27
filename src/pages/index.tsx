@@ -48,7 +48,7 @@ export default function Home() {
               ))}
             </div>
             <Link href={"/climbingRoutes/newRoute"}>
-              <div className="my-5 max-h-fit max-w-fit rounded-md bg-slate-600 p-2 px-4 font-semibold text-slate-100">
+              <div className="my-5 max-h-fit max-w-fit rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
                 Add New Route
               </div>
             </Link>

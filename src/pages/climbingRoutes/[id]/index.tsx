@@ -64,8 +64,8 @@ export default function ClimbingRoute() {
             <div className="flex w-full flex-col justify-center border-t p-4">
               <div className="min-w-min min-h-min">
                 <InlineTextAreaEdit
-                  defaultStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-md pr-2"
-                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-md pr-2 resize-none"
+                  defaultStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2"
+                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2 resize-none"
                   value={route.data.description as string | undefined}
                   onChange={(value) =>
                     updateRoute
@@ -82,7 +82,7 @@ export default function ClimbingRoute() {
               <InlineTextEdit
                 defaultStyle="text-xl pr-2"
                 formStyle="w-full h-full"
-                inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                 value={route.data.location as string | undefined}
                 onChange={(value) =>
                   updateRoute
@@ -98,7 +98,7 @@ export default function ClimbingRoute() {
               <InlineDateEdit
                 defaultStyle="text-xl pr-2"
                 formStyle="w-full h-full"
-                inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                 value={route.data.date_started as Date | undefined}
                 onChange={(value) =>
                   updateRoute
@@ -114,7 +114,7 @@ export default function ClimbingRoute() {
               <InlineDateEdit
                 defaultStyle="text-xl pr-2"
                 formStyle="w-full h-full"
-                inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                 value={route.data.date_finished as Date | undefined}
                 onChange={(value) =>
                   updateRoute

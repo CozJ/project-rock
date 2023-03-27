@@ -47,7 +47,7 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
           <div className="flex w-full max-w-4xl flex-row justify-evenly">
             <label
               htmlFor={STATUS.new}
-              className={`flex h-12 w-1/3 flex-col rounded-l-md bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+              className={`flex h-12 w-1/3 flex-col rounded-l-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
                 selectedStyle === STATUS.new && `bg-slate-800`
               }`}
             >
@@ -111,7 +111,7 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
             </label>
             <label
               htmlFor={STATUS.completed}
-              className={`flex h-12 w-1/3 flex-col rounded-r-md bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+              className={`flex h-12 w-1/3 flex-col rounded-r-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
                 selectedStyle === STATUS.completed && `bg-slate-800`
               }`}
             >
@@ -131,13 +131,13 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
             <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-l-md  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+              className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="max-h-fit w-1/2 rounded-r-md  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
             >
               Save
             </button>

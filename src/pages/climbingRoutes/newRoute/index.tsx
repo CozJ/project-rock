@@ -72,10 +72,10 @@ export default function NewRoute() {
               <h1 className="text-2xl font-bold">Create a new route</h1>
             </div>
             <div className="flex w-full flex-col border-t md:flex-row">
-              <div className="md:m-4 w-full flex flex-col">
+              <div className="flex w-full flex-col md:m-4">
                 <label className="mt-5 mb-2 text-lg font-semibold">Name</label>
                 <input
-                  className="w-full max-w-4xl rounded-md border p-1"
+                  className="w-full max-w-4xl rounded-lg border p-1"
                   type="text"
                   placeholder="Name"
                   {...register("name", { required: true })}
@@ -88,12 +88,12 @@ export default function NewRoute() {
                   Description
                 </label>
                 <textarea
-                  className="h-40 md:h-full w-full max-w-4xl resize-none rounded-md border p-1"
+                  className="h-40 w-full max-w-4xl resize-none rounded-lg border p-1 md:h-full"
                   placeholder="Description"
                   {...register("description")}
                 ></textarea>
               </div>
-              <div className="md:m-4 w-full flex flex-col">
+              <div className="flex w-full flex-col md:m-4">
                 <label className="mt-5 mb-2 text-lg font-semibold">Grade</label>
                 <div className="flex w-full max-w-4xl flex-row justify-evenly">
                   <button
@@ -171,7 +171,7 @@ export default function NewRoute() {
                 <div className="flex w-full max-w-4xl flex-row justify-evenly">
                   <label
                     htmlFor={STYLES.sport}
-                    className={`flex h-12 w-1/3 flex-col rounded-l-md bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                    className={`flex h-12 w-1/3 flex-col rounded-l-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
                       selectedStyle === STYLES.sport && `bg-slate-800`
                     }`}
                   >
@@ -203,7 +203,7 @@ export default function NewRoute() {
                   </label>
                   <label
                     htmlFor={STYLES.trad}
-                    className={`flex h-12 w-1/3 flex-col rounded-r-md bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                    className={`flex h-12 w-1/3 flex-col rounded-r-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
                       selectedStyle === STYLES.trad && `bg-slate-800`
                     }`}
                   >
@@ -226,7 +226,7 @@ export default function NewRoute() {
                   Location
                 </label>
                 <input
-                  className="w-full max-w-4xl rounded-md border p-1"
+                  className="w-full max-w-4xl rounded-lg border p-1"
                   type="text"
                   placeholder="Location"
                   {...register("location", { required: true })}
@@ -239,7 +239,7 @@ export default function NewRoute() {
                   Date Started
                 </label>
                 <input
-                  className="w-full max-w-4xl rounded-md border p-1"
+                  className="w-full max-w-4xl rounded-lg border p-1"
                   type="date"
                   placeholder="Date Started"
                   {...register("date_started", { required: true })}
@@ -255,7 +255,7 @@ export default function NewRoute() {
                 )}
               </div>
             </div>
-            <button className="hover:bg-green-mt-5 my-4 mb-2 w-max rounded-md bg-green-500 py-1 px-6 text-lg font-semibold text-white hover:bg-green-600">
+            <button className="w-max rounded-lg bg-slate-600 py-1 px-6 text-lg font-semibold text-white hover:bg-slate-800 max-md:my-8 md:m-4">
               Submit
             </button>
           </form>

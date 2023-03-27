@@ -56,13 +56,13 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
             <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-l-md  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+              className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="max-h-fit w-1/2 rounded-r-md  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
             >
               Save
             </button>
