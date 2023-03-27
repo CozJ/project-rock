@@ -8,13 +8,13 @@ type InlineStyleEditProps = {
   onChange: (value: Date | undefined) => void;
   required: boolean;
   defaultStyle: string;
-  formStyle: string;
-  inputStyle: string;
 };
 
 export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedStyle, setSelectedStyle] = useState<string | undefined>(props.value);
+  const [selectedStyle, setSelectedStyle] = useState<string | undefined>(
+    props.value
+  );
   const [value, setInputValue] = useState(props.value);
 
   const {
@@ -98,19 +98,21 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
             </label>
           </div>
           {errors.style && <p className="text-red-500">Style is required</p>}
-          <button
-            type="submit"
-            className="max-h-fit w-1/2 rounded-md  bg-green-500 p-2 px-2 hover:bg-green-600"
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className=" max-h-fit w-1/2 rounded-md  bg-red-500 p-2 px-2 font-semibold hover:bg-red-600"
-          >
-            Cancel
-          </button>
+          <div className="my-1 w-36 font-semibold text-slate-100">
+            <button
+              type="button"
+              onClick={handleCancel}
+              className=" max-h-fit w-1/2 rounded-l-md  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="max-h-fit w-1/2 rounded-r-md  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+            >
+              Save
+            </button>
+            </div>
         </form>
       ) : (
         <div className="flex flex-row items-center">

@@ -23,7 +23,7 @@ export const climbingRoutesRouter = createTRPCRouter({
       orderBy: {
         date_started: "desc",
       },
-      take: 6,
+      take: 9,
     });
   }),
 
@@ -54,7 +54,6 @@ export const climbingRoutesRouter = createTRPCRouter({
         date_finished: z.date().optional(),
         status: z.string(),
         attempts: z.number(),
-        userId: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -69,7 +68,7 @@ export const climbingRoutesRouter = createTRPCRouter({
           date_finished: input.date_finished,
           status: input.status,
           attempts: input.attempts,
-          userId: input.userId,
+          userId: ctx.session.user.id,
         },
       });
     }),
@@ -87,7 +86,6 @@ export const climbingRoutesRouter = createTRPCRouter({
         date_finished: z.date().optional(),
         status: z.string().optional(),
         attempts: z.number().optional(),
-        userId: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -105,7 +103,25 @@ export const climbingRoutesRouter = createTRPCRouter({
           date_finished: input.date_finished || undefined,
           status: input.status || undefined,
           attempts: input.attempts || undefined,
-          userId: input.userId,
+          userId: ctx.session.user.id,
+        },
+      });
+    }),
+
+  setUserRouteAttempts: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        attempts: z.number(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.climbingRoutes.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          attempts: input.attempts,
         },
       });
     }),

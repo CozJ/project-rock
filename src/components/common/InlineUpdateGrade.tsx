@@ -9,13 +9,13 @@ type InlineGradeEditProps = {
   onChange: (value: Date | undefined) => void;
   required: boolean;
   defaultStyle: string;
-  formStyle: string;
-  inputStyle: string;
 };
 
 export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [gradeScheme, setGradeScheme] = useState<string | undefined>(getGradeSchemeFromValue(props.value) || undefined);
+  const [gradeScheme, setGradeScheme] = useState<string | undefined>(
+    getGradeSchemeFromValue(props.value) || undefined
+  );
   const [value, setInputValue] = useState(props.value);
 
   const {
@@ -44,24 +44,29 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <div className="m-4 flex w-full flex-col">
-            <label className="mt-5 mb-2 text-lg font-semibold">Grade</label>
+          <div className="flex w-full flex-col text-slate-100">
             <div className="flex w-full max-w-4xl flex-row justify-evenly">
               <button
-                className={`h-12 w-1/4 rounded-tl-md bg-slate-600 text-slate-100 hover:bg-slate-700 ${
+                className={`h-12 w-1/4 rounded-tl-md bg-slate-600 hover:bg-slate-700 ${
                   gradeScheme === "V" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => {setGradeScheme("V"); setInputValue(V_GRADES.V0); }}
+                onClick={() => {
+                  setGradeScheme("V");
+                  setInputValue(V_GRADES.V0);
+                }}
               >
                 V
               </button>
               <button
-                className={`h-12 w-1/4 bg-slate-600 text-slate-100 hover:bg-slate-700 ${
+                className={`h-12 w-1/4 bg-slate-600  hover:bg-slate-700 ${
                   gradeScheme === "FONT" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => {setGradeScheme("FONT"); setInputValue(FONT_GRADES.f1); }}
+                onClick={() => {
+                  setGradeScheme("FONT");
+                  setInputValue(FONT_GRADES.f1);
+                }}
               >
                 Font
               </button>
@@ -70,7 +75,10 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "BTG" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => {setGradeScheme("BTG"); setInputValue(BTG_GRADES.MOD); }}
+                onClick={() => {
+                  setGradeScheme("BTG");
+                  setInputValue(BTG_GRADES.MOD);
+                }}
               >
                 B.Trad
               </button>
@@ -79,13 +87,16 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                   gradeScheme === "YDS" && "bg-slate-800"
                 } `}
                 type="button"
-                onClick={() => {setGradeScheme("YDS"); setInputValue(YDS_GRADES.YSD5_1);}}
+                onClick={() => {
+                  setGradeScheme("YDS");
+                  setInputValue(YDS_GRADES.YSD5_1);
+                }}
               >
                 USA
               </button>
             </div>
             <select
-              className="w-full max-w-4xl rounded-b-md border p-1"
+              className="w-full max-w-4xl rounded-b-md border p-1 text-slate-600"
               placeholder="Grade"
               defaultValue={value}
               {...register("grade", { required: true })}
@@ -116,20 +127,22 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
                 ))}
             </select>
             {errors.grade && <p className="text-red-500">Grade is required</p>}
+            <div className="my-1 w-36 font-semibold text-slate-100">
+            <button
+              type="button"
+              onClick={handleCancel}
+              className=" max-h-fit w-1/2 rounded-l-md  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="max-h-fit w-1/2 rounded-r-md  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+            >
+              Save
+            </button>
+            </div>
           </div>
-          <button
-            type="submit"
-            className="max-h-fit w-1/2 rounded-md  bg-green-500 p-2 px-2 hover:bg-green-600"
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className=" max-h-fit w-1/2 rounded-md  bg-red-500 p-2 px-2 font-semibold hover:bg-red-600"
-          >
-            Cancel
-          </button>
         </form>
       ) : (
         <div className="flex flex-row items-center">
