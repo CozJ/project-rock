@@ -23,7 +23,6 @@ type FormValues = {
   date_finished: Date | undefined;
   status: string;
   attempts: number;
-  userId: string;
 };
 
 export default function NewRoute() {
@@ -56,7 +55,6 @@ export default function NewRoute() {
         date_finished: undefined,
         status: STATUS.new,
         attempts: 0,
-        userId: session.user.id,
       };
       createdRoute.mutateAsync(formData).then(() => router.push("/"));
     };
@@ -73,11 +71,11 @@ export default function NewRoute() {
             <div className="flex w-full flex-row justify-between">
               <h1 className="text-2xl font-bold">Create a new route</h1>
             </div>
-            <div className="flex w-full flex-col justify-center border-t p-4 md:flex-row">
-              <div className="m-4 w-full flex flex-col">
+            <div className="flex w-full flex-col border-t md:flex-row">
+              <div className="md:m-4 w-full flex flex-col">
                 <label className="mt-5 mb-2 text-lg font-semibold">Name</label>
                 <input
-                  className="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  className="w-full max-w-4xl rounded-md border p-1"
                   type="text"
                   placeholder="Name"
                   {...register("name", { required: true })}
@@ -90,12 +88,12 @@ export default function NewRoute() {
                   Description
                 </label>
                 <textarea
-                  className="h-52 w-full max-w-4xl resize-none rounded-md border p-1"
+                  className="h-40 md:h-full w-full max-w-4xl resize-none rounded-md border p-1"
                   placeholder="Description"
                   {...register("description")}
                 ></textarea>
               </div>
-              <div className="m-4 w-full flex flex-col">
+              <div className="md:m-4 w-full flex flex-col">
                 <label className="mt-5 mb-2 text-lg font-semibold">Grade</label>
                 <div className="flex w-full max-w-4xl flex-row justify-evenly">
                   <button

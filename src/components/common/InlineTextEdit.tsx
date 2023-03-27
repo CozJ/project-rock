@@ -54,17 +54,17 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
           {errors.value && <span>This field is required</span>}
           <div className="my-1 w-36 font-semibold text-slate-100">
             <button
-              type="submit"
-              className="max-h-fit w-1/2 rounded-md  bg-green-500 p-2 px-2 hover:bg-green-600"
-            >
-              Save
-            </button>
-            <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-md  bg-red-500 p-2 px-2 font-semibold hover:bg-red-600"
+              className=" max-h-fit w-1/2 rounded-l-md  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
             >
               Cancel
+            </button>
+            <button
+              type="submit"
+              className="max-h-fit w-1/2 rounded-r-md  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+            >
+              Save
             </button>
           </div>
         </form>
