@@ -43,7 +43,7 @@ export const RouteCard = (props: RouteCardProps) => {
           </div>
           <div className="flex w-1/2 flex-row justify-end">
             <button
-              className="w-8 rounded-l bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
+              className="w-8 rounded-l-lg bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
               type="button"
               onClick={(e) => {
                 e.preventDefault();
@@ -61,7 +61,7 @@ export const RouteCard = (props: RouteCardProps) => {
               {attempts}
             </div>
             <button
-              className="w-8 rounded-r bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
+              className="w-8 rounded-r-lg bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
               type="button"
               onClick={(e) => {
                 e.preventDefault();
