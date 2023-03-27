@@ -2,6 +2,28 @@ import { PromptLogin } from "@/components/auth/promptLogin";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { RouteCard } from "@/components/common/RouteCard";
+import { useForm } from "react-hook-form";
+import { InlineTextEdit } from "@/components/common/InlineTextEdit";
+import { InlineTextAreaEdit } from "@/components/common/InlineTextAreaEdit";
+import { InlineDateEdit } from "@/components/common/InlineDateEdit";
+import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
+import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
+import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
+
+type FormValues = {
+  id: string;
+  name: string | undefined;
+  description: string | undefined;
+  grade: string | undefined;
+  style: string | undefined;
+  location: string | undefined;
+  date_started: Date | undefined;
+  date_finished: Date | undefined;
+  status: string | undefined;
+  attempts: number | undefined;
+  userId: string;
+};
 
 export default function ClimbingRoute() {
   const router = useRouter();
@@ -10,6 +32,7 @@ export default function ClimbingRoute() {
   const { data: session } = useSession();
 
   const route = api.climbingRoutes.getRoute.useQuery({ id: id });
+  const updateRoute = api.climbingRoutes.updateRoute.useMutation();
 
   if (session) {
     if (route.isLoading) return <div>Loading...</div>;
@@ -17,23 +40,148 @@ export default function ClimbingRoute() {
     if (route.error) return <div>Error: {route.error.message}</div>;
 
     return (
-      <div className="m-4 p-4">
-        <h1 className="text-xl font-bold">{route.data?.name}</h1>
-        <p className="text-lg font-semibold">Description</p>
-        <p>{route.data?.description}</p>
-        <p className="text-lg font-semibold">Grade</p>
-        <p>{route.data?.grade}</p>
-        <p className="text-lg font-semibold">Style</p>
-        <p>{route.data?.style}</p>
-        <p className="text-lg font-semibold">Location</p>
-        <p>{route.data?.location}</p>
-        <p className="text-lg font-semibold">Date Added</p>
-        <p>{route.data?.date_started?.toDateString()}</p>
-        <p className="text-lg font-semibold">Date Finished</p>
-        <p>{route.data?.date_finished?.toDateString()}</p>
-        <p className="text-lg font-semibold">Attempts</p>
-        <p>{route.data?.attempts}</p>
-      </div>
+      <>
+        <div className="m-2 flex flex-col items-center p-2">
+          <div className="container flex flex-col items-end justify-between text-slate-600">
+            <div className="flex w-full flex-row justify-between">
+              <h1 className="text-2xl font-bold">{route.data.name}</h1>
+            </div>
+            <div className="flex w-full flex-col justify-center border-t p-4 md:flex-row">
+              <div className="m-2 flex w-full flex-col">
+                <InlineTextEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.name}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        name: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineTextEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.location as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        location: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineTextAreaEdit
+                  defaultStyle="min-h-fit w-fit text-xl w-full max-w-4xl resize-none rounded-md pr-2"
+                  formStyle="w-full h-full border-none"
+                  inputStyle="h-52 w-full max-w-4xl resize-none rounded-md border p-1"
+                  value={route.data.description as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        description: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={false}
+                />
+                <InlineDateEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.date_started as Date | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        date_started: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineDateEdit
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.date_finished as Date | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        date_finished: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={false}
+                />
+                <InlineUpdateGrade
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.grade as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        grade: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineUpdateStyle
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.style as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        style: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+                <InlineUpdatStatus
+                  defaultStyle="text-xl pr-2"
+                  formStyle="w-full h-full"
+                  inputStyle="max-w-ful w-full max-w-4xl rounded-md border p-1"
+                  value={route.data.status as string | undefined}
+                  onChange={(value) =>
+                    updateRoute
+                      .mutateAsync({
+                        id: route.data.id,
+                        status: value,
+                        userId: session.user.id,
+                      } as FormValues)
+                      .then(() => route.refetch())
+                  }
+                  required={true}
+                />
+              </div>
+              <div className="m-4 flex w-full flex-col"></div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
   return <PromptLogin />;

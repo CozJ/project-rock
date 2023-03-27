@@ -121,3 +121,11 @@ export const STYLES = {
     trad: 'Trad',
     boulder: 'Boulder',
 } as const;
+
+export const STATUS = {
+    new: 'New',
+    inProgress: 'In Progress',
+    redpoint: 'Redpoint',
+    backlog: 'Backlog',
+    completed: 'Completed',
+}

@@ -3,7 +3,7 @@ import { api } from "@/utils/api";
 import { PromptLogin } from "@/components/auth/promptLogin";
 import Link from "next/link";
 import { ClimbingRoutes } from "@prisma/client";
-import { RouteCard } from "@/components/homePage/RouteCard";
+import { RouteCard } from "@/components/common/RouteCard";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 export default function Home() {
@@ -30,16 +30,16 @@ export default function Home() {
                 All Routes <ArrowCircleRightIcon />
               </Link>
             </div>
-            <div className="flex max-h-96 w-full flex-row flex-wrap justify-start overflow-y-scroll sm:overflow-hidden border-t border-b">
+            <div className="flex max-h-96 w-full flex-row flex-wrap justify-start overflow-y-scroll border-t border-b sm:overflow-hidden">
               {userRoutes.data?.map((route: ClimbingRoutes) => (
-                <div className="w-full p-2 sm:w-1/2 md:w-1/3">
+                <div key={route.id} className="w-full p-2 sm:w-1/2 md:w-1/3">
                   <RouteCard
                     key={route.id}
                     id={route.id}
                     name={route.name}
                     style={route.style}
                     grade={route.grade}
-                    status={"Unfinished"}
+                    status={route.status}
                     attempts={route.attempts}
                   />
                 </div>
