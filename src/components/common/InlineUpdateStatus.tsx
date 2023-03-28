@@ -43,105 +43,106 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <label className="mt-5 mb-2 text-lg font-semibold">Style</label>
-          <div className="flex w-full max-w-4xl flex-row justify-evenly">
-            <label
-              htmlFor={STATUS.new}
-              className={`flex h-12 w-1/3 flex-col rounded-l-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.new && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.new}
-                value={STATUS.new}
-                onClick={() => setSelectedStyle(STATUS.new)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.new}
-            </label>
-            <label
-              htmlFor={STATUS.inProgress}
-              className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.inProgress && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.inProgress}
-                value={STATUS.inProgress}
-                onClick={() => setSelectedStyle(STATUS.inProgress)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.inProgress}
-            </label>
-            <label
-              htmlFor={STATUS.redpoint}
-              className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.redpoint && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.redpoint}
-                value={STATUS.redpoint}
-                onClick={() => setSelectedStyle(STATUS.redpoint)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.redpoint}
-            </label>
-            <label
-              htmlFor={STATUS.backlog}
-              className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.backlog && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.backlog}
-                value={STATUS.backlog}
-                onClick={() => setSelectedStyle(STATUS.backlog)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.backlog}
-            </label>
-            <label
-              htmlFor={STATUS.completed}
-              className={`flex h-12 w-1/3 flex-col rounded-r-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                selectedStyle === STATUS.completed && `bg-slate-800`
-              }`}
-            >
-              <input
-                type="radio"
-                id={STATUS.completed}
-                value={STATUS.completed}
-                onClick={() => setSelectedStyle(STATUS.completed)}
-                {...register("style", { required: true })}
-                className="invisible"
-              />
-              {STATUS.completed}
-            </label>
-          </div>
-          {errors.style && <p className="text-red-500">Style is required</p>}
-          <div className="my-1 w-36 font-semibold text-slate-100">
-            <button
-              type="button"
-              onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
-            >
-              Save
-            </button>
+          <div className="flex max-w-4xl flex-col items-end text-slate-100">
+            <div className="flex w-full max-w-4xl flex-row justify-evenly">
+              <label
+                htmlFor={STATUS.new}
+                className={`flex h-12 w-1/3 flex-col rounded-l-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                  selectedStyle === STATUS.new && `bg-slate-800`
+                }`}
+              >
+                <input
+                  type="radio"
+                  id={STATUS.new}
+                  value={STATUS.new}
+                  onClick={() => setSelectedStyle(STATUS.new)}
+                  {...register("style", { required: true })}
+                  className="invisible"
+                />
+                {STATUS.new}
+              </label>
+              <label
+                htmlFor={STATUS.inProgress}
+                className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                  selectedStyle === STATUS.inProgress && `bg-slate-800`
+                }`}
+              >
+                <input
+                  type="radio"
+                  id={STATUS.inProgress}
+                  value={STATUS.inProgress}
+                  onClick={() => setSelectedStyle(STATUS.inProgress)}
+                  {...register("style", { required: true })}
+                  className="invisible"
+                />
+                {STATUS.inProgress}
+              </label>
+              <label
+                htmlFor={STATUS.redpoint}
+                className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                  selectedStyle === STATUS.redpoint && `bg-slate-800`
+                }`}
+              >
+                <input
+                  type="radio"
+                  id={STATUS.redpoint}
+                  value={STATUS.redpoint}
+                  onClick={() => setSelectedStyle(STATUS.redpoint)}
+                  {...register("style", { required: true })}
+                  className="invisible"
+                />
+                {STATUS.redpoint}
+              </label>
+              <label
+                htmlFor={STATUS.backlog}
+                className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                  selectedStyle === STATUS.backlog && `bg-slate-800`
+                }`}
+              >
+                <input
+                  type="radio"
+                  id={STATUS.backlog}
+                  value={STATUS.backlog}
+                  onClick={() => setSelectedStyle(STATUS.backlog)}
+                  {...register("style", { required: true })}
+                  className="invisible"
+                />
+                {STATUS.backlog}
+              </label>
+              <label
+                htmlFor={STATUS.completed}
+                className={`flex h-12 w-1/3 flex-col rounded-r-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
+                  selectedStyle === STATUS.completed && `bg-slate-800`
+                }`}
+              >
+                <input
+                  type="radio"
+                  id={STATUS.completed}
+                  value={STATUS.completed}
+                  onClick={() => setSelectedStyle(STATUS.completed)}
+                  {...register("style", { required: true })}
+                  className="invisible"
+                />
+                {STATUS.completed}
+              </label>
             </div>
+            {errors.style && <p className="text-red-500">Style is required</p>}
+            <div className="my-1 w-36 font-semibold text-slate-100">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </form>
       ) : (
         <div className="flex flex-row items-center">

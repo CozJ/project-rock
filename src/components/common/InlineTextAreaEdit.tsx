@@ -60,7 +60,7 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
             </button>
             <button
               type="submit"
-              className="max-h-fit w-1/2 rounded-l-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
             >
               Save
             </button>
