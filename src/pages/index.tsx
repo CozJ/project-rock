@@ -11,7 +11,7 @@ export default function Home() {
 
   const queryEnabled = session ? true : false;
 
-  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery(undefined, {
+  const userRoutes = api.climbingRoutes.getRecentRoutes.useQuery(undefined, {
     enabled: queryEnabled,
   });
 
@@ -19,6 +19,8 @@ export default function Home() {
     if (userRoutes.isLoading) return <div>Loading...</div>;
 
     if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
+
+    console.log(userRoutes.data);
 
     return (
       <>
@@ -46,7 +48,7 @@ export default function Home() {
               ))}
             </div>
             <Link href={"/climbingRoutes/newRoute"}>
-              <div className="my-5 max-h-fit max-w-fit rounded-md bg-slate-600 p-2 px-4 font-semibold text-slate-100">
+              <div className="my-5 max-h-fit max-w-fit rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
                 Add New Route
               </div>
             </Link>
