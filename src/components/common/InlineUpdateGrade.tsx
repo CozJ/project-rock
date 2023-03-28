@@ -44,7 +44,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <div className="flex w-full flex-col text-slate-100">
+          <div className="flex max-w-4xl flex-col text-slate-100 items-end">
             <div className="flex w-full max-w-4xl flex-row justify-evenly">
               <button
                 className={`h-12 w-1/4 rounded-tl-md bg-slate-600 hover:bg-slate-700 ${
