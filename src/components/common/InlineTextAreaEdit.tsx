@@ -7,7 +7,6 @@ type InlineTextAreaEditProps = {
   onChange: (value: string) => void;
   required: boolean;
   defaultStyle: string;
-  formStyle: string;
   inputStyle: string;
 };
 
@@ -31,7 +30,6 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
   const onErrors = (errors: any) => console.error(errors);
 
   const onFormSubmit = (data: any) => {
-
     console.log(data);
     setValue("value", data.value);
     setInputValue(data.value);
@@ -44,7 +42,7 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
       {isEditing ? (
         <form
           onSubmit={handleSubmit(onFormSubmit, onErrors)}
-          className={props.formStyle}
+          className="flex flex-col items-end"
         >
           <textarea
             className={props.inputStyle}
@@ -54,26 +52,26 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
           {errors.value && <span>This field is required</span>}
           <div className="my-1 w-36 font-semibold text-slate-100">
             <button
-              type="submit"
-              className="max-h-fit w-1/2 rounded-md  bg-green-500 p-2 px-2 hover:bg-green-600"
-            >
-              Save
-            </button>
-            <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-md  bg-red-500 p-2 px-2 font-semibold hover:bg-red-600"
+              className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
             >
               Cancel
+            </button>
+            <button
+              type="submit"
+              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+            >
+              Save
             </button>
           </div>
         </form>
       ) : (
-        <div className="flex flex-row items-start">
+        <div className="flex flex-col items-end">
           <span className={props.defaultStyle}>{value}</span>
           <button onClick={() => setIsEditing(true)}>
             <BorderColorIcon
-              className="text-center text-slate-300"
+              className="m-2 text-center text-slate-300"
               fontSize="small"
             />
           </button>

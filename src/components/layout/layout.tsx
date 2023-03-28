@@ -15,7 +15,7 @@ export default function RootLayout({
         <Link href={"/"}>
           <h1 className="text-2xl font-semibold text-slate-600">Project-Rock</h1>
         </Link>
-        <AuthButton className="rounded-md bg-slate-600 text-slate-100 p-2 px-4 font-semibold" />
+        <AuthButton className="rounded-lg bg-slate-600 text-slate-100 p-2 px-4 font-semibold" />
       </header>
       <main className={inter.className}>{children}</main>
     </>

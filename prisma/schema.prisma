@@ -67,7 +67,7 @@ model ClimbingRoutes {
   date_started  DateTime? @db.Date
   date_finished DateTime? @db.Date
   status        String?   @db.VarChar(16)
-  attempts      Int? // potentially split into new table
+  attempts      Int // potentially split into new table
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String
 }

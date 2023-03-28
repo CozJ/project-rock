@@ -1,7 +1,7 @@
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 type RouteCardProps = {
   id: string;
@@ -15,32 +15,17 @@ type RouteCardProps = {
 export const RouteCard = (props: RouteCardProps) => {
   const { data: session } = useSession();
 
-  const updateRoute = api.climbingRoutes.updateRoute.useMutation();
+  const updateRoute = api.climbingRoutes.setUserRouteAttempts.useMutation();
   const [attempts, setAttempts] = React.useState(props.attempts);
 
-  const removeAttempt = () => {
+  useEffect(() => {
     if (session) {
-      if (props.attempts > 0) {
         updateRoute.mutateAsync({
           id: props.id,
-          attempts: props.attempts - 1,
-          userId: session.user.id,
+          attempts: attempts,
         });
-        setAttempts(attempts - 1);
       }
-    }
-  };
-
-  const addAttempt = () => {
-    if (session) {
-      updateRoute.mutateAsync({
-        id: props.id,
-        attempts: props.attempts + 1,
-        userId: session.user.id,
-      });
-      setAttempts(attempts + 1);
-    }
-  };
+  }, [attempts]);
 
   return (
     <Link href={`climbingRoutes/${props.id}`}>
@@ -58,11 +43,11 @@ export const RouteCard = (props: RouteCardProps) => {
           </div>
           <div className="flex w-1/2 flex-row justify-end">
             <button
-              className="w-8 rounded-l bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
+              className="w-8 rounded-l-lg bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
               type="button"
               onClick={(e) => {
                 e.preventDefault();
-                removeAttempt();
+                if (attempts > 0) setAttempts(attempts - 1);
               }}
             >
               -
@@ -76,11 +61,11 @@ export const RouteCard = (props: RouteCardProps) => {
               {attempts}
             </div>
             <button
-              className="w-8 rounded-r bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
+              className="w-8 rounded-r-lg bg-slate-600 p-2 text-slate-100 hover:bg-slate-800"
               type="button"
               onClick={(e) => {
                 e.preventDefault();
-                addAttempt();
+                setAttempts(attempts + 1);
               }}
             >
               +
