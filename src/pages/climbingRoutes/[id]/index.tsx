@@ -10,6 +10,7 @@ import { InlineDateEdit } from "@/components/common/InlineDateEdit";
 import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
 import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
 import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
+import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 
 type FormValues = {
   id: string;
@@ -31,7 +32,10 @@ export default function ClimbingRoute() {
 
   const { data: session } = useSession();
 
-  const route = api.climbingRoutes.getRoute.useQuery({ id: id });
+  const route = api.climbingRoutes.getRoute.useQuery(
+    { id: id },
+    { enabled: !!id }
+  );
   const updateRoute = api.climbingRoutes.updateRoute.useMutation();
 
   if (session) {
@@ -47,7 +51,7 @@ export default function ClimbingRoute() {
               <InlineTextEdit
                 defaultStyle="text-2xl font-bold pr-2"
                 formStyle="w-full h-full flex flex-col items-end"
-                inputStyle="w-full text-2xl font-bold rounded-lg border mr-2"
+                inputStyle="w-full text-2xl font-bold rounded-lg p-1 border"
                 value={route.data.name}
                 onChange={(value) =>
                   updateRoute
@@ -65,7 +69,7 @@ export default function ClimbingRoute() {
               <div className="min-h-min w-full">
                 <InlineTextAreaEdit
                   defaultStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2"
-                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2 resize-none"
+                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl rounded-lg pr-2 resize-none"
                   value={route.data.description as string | undefined}
                   onChange={(value) =>
                     updateRoute
@@ -80,8 +84,8 @@ export default function ClimbingRoute() {
                 />
               </div>
               <div className="min-h-min w-full">
-                <div className="flex w-full md:flex-row flex-col">
-                  <div className="md:w-1/2 w-full m-2">
+                <div className="flex w-full flex-col md:flex-row">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineUpdateGrade
                       defaultStyle="text-xl pr-2"
                       value={route.data.grade as string | undefined}
@@ -97,7 +101,7 @@ export default function ClimbingRoute() {
                       required={true}
                     />
                   </div>
-                  <div className="md:w-1/2 w-full m-2">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineUpdateStyle
                       defaultStyle="text-xl pr-2"
                       value={route.data.style as string | undefined}
@@ -114,8 +118,8 @@ export default function ClimbingRoute() {
                     />
                   </div>
                 </div>
-                <div className="flex w-full md:flex-row flex-col">
-                  <div className="md:w-1/2 w-full m-2">
+                <div className="flex w-full flex-col md:flex-row">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineDateEdit
                       defaultStyle="text-xl pr-2"
                       formStyle="w-full max-w-4xl h-full flex flex-col items-end"
@@ -133,7 +137,7 @@ export default function ClimbingRoute() {
                       required={true}
                     />
                   </div>
-                  <div className="md:w-1/2 w-full m-2">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineDateEdit
                       defaultStyle="text-xl pr-2"
                       formStyle="w-full max-w-4xl h-full flex flex-col items-end"
@@ -152,8 +156,8 @@ export default function ClimbingRoute() {
                     />
                   </div>
                 </div>
-                <div className="flex w-full md:flex-row flex-col">
-                  <div className="md:w-1/2 w-full m-2">
+                <div className="flex w-full flex-col md:flex-row">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineTextEdit
                       defaultStyle="text-xl pr-2"
                       formStyle="w-full max-w-4xl h-full flex flex-col items-end"
@@ -171,7 +175,7 @@ export default function ClimbingRoute() {
                       required={true}
                     />
                   </div>
-                  <div className="md:w-1/2 w-full m-2">
+                  <div className="m-2 w-full md:w-1/2">
                     <InlineUpdatStatus
                       defaultStyle="text-xl pr-2"
                       value={route.data.status as string | undefined}
@@ -188,6 +192,9 @@ export default function ClimbingRoute() {
                     />
                   </div>
                 </div>
+              </div>
+              <div className="flex w-full flex-col">
+                <RouteNotes routeId={id} />
               </div>
             </div>
           </div>

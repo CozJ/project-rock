@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClimbingRoutes } from "@prisma/client";
 import { RouteCard } from "@/components/common/RouteCard";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -47,9 +48,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <Link href={"/climbingRoutes/newRoute"}>
-              <div className="my-5 max-h-fit max-w-fit rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
-                Add New Route
+            <Link type="button" href={"/climbingRoutes/newRoute"}>
+              <div className="my-5 max-h-fit max-w-fit flex flex-row justify-center items-center rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
+                <span>New Route</span>
+                <AddIcon />
               </div>
             </Link>
             <div className="flex w-full flex-row justify-between">
