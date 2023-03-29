@@ -47,7 +47,7 @@ export const RouteNotes = (props: RouteNotesProps) => {
       </div>
       <div className="min-h-min w-full">
       {Notes.data?.map((note) => (
-        <NoteAccordionSection note={note} />
+        <NoteAccordionSection key={note.id} note={note} />
       ))}
       </div>
     </>
