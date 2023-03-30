@@ -11,6 +11,7 @@ import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
 import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
 import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
+import { RouteAttemptsCounter } from "@/components/common/RouteAttemptsCounter";
 
 type FormValues = {
   id: string;
@@ -84,6 +85,7 @@ export default function ClimbingRoute() {
                 />
               </div>
               <div className="min-h-min w-full">
+                <RouteAttemptsCounter attempts={route.data.attempts} id={id} />
                 <div className="flex w-full flex-col md:flex-row">
                   <div className="m-2 w-full md:w-1/2">
                     <InlineUpdateGrade
