@@ -42,6 +42,9 @@ export const climbingRoutesRouter = createTRPCRouter({
           id: input.id,
           userId: ctx.session.user.id,
         },
+        include: {
+          ClimbingRoutesAttempts: true,
+        },
       });
     }),
 
