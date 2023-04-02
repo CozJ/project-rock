@@ -78,22 +78,6 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
                 {STATUS.inProgress}
               </label>
               <label
-                htmlFor={STATUS.redpoint}
-                className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
-                  selectedStyle === STATUS.redpoint && `bg-slate-800`
-                }`}
-              >
-                <input
-                  type="radio"
-                  id={STATUS.redpoint}
-                  value={STATUS.redpoint}
-                  onClick={() => setSelectedStyle(STATUS.redpoint)}
-                  {...register("style", { required: true })}
-                  className="invisible"
-                />
-                {STATUS.redpoint}
-              </label>
-              <label
                 htmlFor={STATUS.backlog}
                 className={`flex h-12 w-1/3 flex-col bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
                   selectedStyle === STATUS.backlog && `bg-slate-800`

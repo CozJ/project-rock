@@ -22,7 +22,6 @@ type FormValues = {
   date_started: Date;
   date_finished: Date | undefined;
   status: string;
-  attempts: number;
 };
 
 export default function NewRoute() {
@@ -54,7 +53,6 @@ export default function NewRoute() {
         date_started: new Date(data.date_started),
         date_finished: undefined,
         status: STATUS.new,
-        attempts: 0,
       };
       createdRoute.mutateAsync(formData).then(() => router.push("/"));
     };
