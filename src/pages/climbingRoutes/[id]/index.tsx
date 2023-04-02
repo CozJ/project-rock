@@ -195,7 +195,7 @@ export default function ClimbingRoute() {
                 </div>
               </div>
               <div className="flex w-full flex-col m-2">
-                <RouteAttemptsCounterModal id={route.data.id} attempts={route.data.ClimbingRoutesAttempts.length}/>
+                <RouteAttemptsCounterModal id={route.data.id} attempts={route.data.ClimbingRoutesAttempts.length || 0}/>
               </div>
               <div className="flex w-full flex-col">
                 <RouteNotes routeId={id} />
