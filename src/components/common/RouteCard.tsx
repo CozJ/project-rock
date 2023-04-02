@@ -2,7 +2,7 @@ import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { RouteAttemptsCounter } from "./RouteAttemptsCounter";
+import { RouteAttemptsCounterModal } from "./RouteAttemptsCounterModal";
 
 type RouteCardProps = {
   id: string;
@@ -29,7 +29,7 @@ export const RouteCard = (props: RouteCardProps) => {
             <p>{props.status}</p>
           </div>
           <div className="flex w-1/2 flex-row justify-end">
-            <RouteAttemptsCounter attempts={props.attempts} id={props.id} />
+            <RouteAttemptsCounterModal attempts={props.attempts} id={props.id} />
           </div>
         </div>
       </div>
