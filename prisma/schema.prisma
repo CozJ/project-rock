@@ -85,7 +85,6 @@ model ClimbingRoutesNotes {
 model ClimbingRoutesAttempts {
   id      String         @id @default(cuid())
   type    String         @db.VarChar(255)
-  section String?        @db.VarChar(255)
   date    DateTime       @default(now()) @db.Date
   route   ClimbingRoutes @relation(fields: [routeId], references: [id], onDelete: Cascade)
   routeId String
