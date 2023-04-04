@@ -49,7 +49,7 @@ export const AttemptsDateTypeBubbleChart = (
     datasets: [
       {
         type: "bubble",
-        data: [{ key: new Date(), value: 1, radius: 1 }, { key: new Date(), value: 1, radius: 2 }, { key: new Date(), value: 1, radius: 3 }],
+        data: working,
         label: ATTEMPT_TYPES.working,
         backgroundColor: "rgba(255, 99, 132, 0.8)",
         parsing: {
