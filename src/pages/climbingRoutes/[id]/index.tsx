@@ -12,6 +12,7 @@ import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
 import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
+import { AttemptsDistributionBarChart } from "@/components/common/Graphs/AttemptsDistributionBarChart";
 
 type FormValues = {
   id: string;
@@ -56,12 +57,12 @@ export default function ClimbingRoute() {
                 value={route.data.name}
                 onChange={(value) =>
                   updateRoute
-                  .mutateAsync({
-                    id: route.data.id,
-                    name: value,
-                    userId: session.user.id,
-                  } as FormValues)
-                  .then(() => route.refetch())
+                    .mutateAsync({
+                      id: route.data.id,
+                      name: value,
+                      userId: session.user.id,
+                    } as FormValues)
+                    .then(() => route.refetch())
                 }
                 required={true}
               />
@@ -80,7 +81,7 @@ export default function ClimbingRoute() {
                         userId: session.user.id,
                       } as FormValues)
                       .then(() => route.refetch())
-                    }
+                  }
                   required={false}
                 />
               </div>
@@ -92,13 +93,13 @@ export default function ClimbingRoute() {
                       value={route.data.grade as string | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          grade: value,
-                          userId: session.user.id,
-                        } as FormValues)
+                          .mutateAsync({
+                            id: route.data.id,
+                            grade: value,
+                            userId: session.user.id,
+                          } as FormValues)
                           .then(() => route.refetch())
-                        }
+                      }
                       required={true}
                     />
                   </div>
@@ -108,12 +109,12 @@ export default function ClimbingRoute() {
                       value={route.data.style as string | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          style: value,
-                          userId: session.user.id,
-                        } as FormValues)
-                        .then(() => route.refetch())
+                          .mutateAsync({
+                            id: route.data.id,
+                            style: value,
+                            userId: session.user.id,
+                          } as FormValues)
+                          .then(() => route.refetch())
                       }
                       required={true}
                     />
@@ -128,12 +129,12 @@ export default function ClimbingRoute() {
                       value={route.data.date_started as Date | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          date_started: value,
-                          userId: session.user.id,
-                        } as FormValues)
-                        .then(() => route.refetch())
+                          .mutateAsync({
+                            id: route.data.id,
+                            date_started: value,
+                            userId: session.user.id,
+                          } as FormValues)
+                          .then(() => route.refetch())
                       }
                       required={true}
                     />
@@ -146,12 +147,12 @@ export default function ClimbingRoute() {
                       value={route.data.date_finished as Date | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          date_finished: value,
-                          userId: session.user.id,
-                        } as FormValues)
-                        .then(() => route.refetch())
+                          .mutateAsync({
+                            id: route.data.id,
+                            date_finished: value,
+                            userId: session.user.id,
+                          } as FormValues)
+                          .then(() => route.refetch())
                       }
                       required={false}
                     />
@@ -166,12 +167,12 @@ export default function ClimbingRoute() {
                       value={route.data.location as string | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          location: value,
-                          userId: session.user.id,
-                        } as FormValues)
-                        .then(() => route.refetch())
+                          .mutateAsync({
+                            id: route.data.id,
+                            location: value,
+                            userId: session.user.id,
+                          } as FormValues)
+                          .then(() => route.refetch())
                       }
                       required={true}
                     />
@@ -182,23 +183,31 @@ export default function ClimbingRoute() {
                       value={route.data.status as string | undefined}
                       onChange={(value) =>
                         updateRoute
-                        .mutateAsync({
-                          id: route.data.id,
-                          status: value,
-                          userId: session.user.id,
-                        } as FormValues)
-                        .then(() => route.refetch())
+                          .mutateAsync({
+                            id: route.data.id,
+                            status: value,
+                            userId: session.user.id,
+                          } as FormValues)
+                          .then(() => route.refetch())
                       }
                       required={true}
                     />
                   </div>
                 </div>
               </div>
-              <div className="flex w-full flex-col m-2">
-                <RouteAttemptsCounterModal id={route.data.id} attempts={route.data.ClimbingRoutesAttempts.length}/>
+              <div className="m-2 flex w-full flex-col">
+                <RouteAttemptsCounterModal
+                  id={route.data.id}
+                  attempts={route.data.ClimbingRoutesAttempts.length}
+                />
               </div>
               <div className="flex w-full flex-col">
                 <RouteNotes routeId={id} />
+              </div>
+              <div className="m-2 flex w-full flex-col justify-center items-center">
+                <div className="max-w-screen-lg h-96">
+                  <AttemptsDistributionBarChart routeId={id}/>
+                </div>
               </div>
             </div>
           </div>
