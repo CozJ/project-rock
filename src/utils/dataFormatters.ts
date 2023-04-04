@@ -19,36 +19,60 @@ export const attemptsCountByCategory = (attempts: ClimbingRoutesAttempts[]) => {
 export const groupAttemptsByTypeAndDate = (
   attempts: ClimbingRoutesAttempts[]
 ) => {
-  const working: { key: Date; value: number; radious: number }[] = [];
-  const crux: { key: Date; value: number; radious: number }[] = [];
-  const linking: { key: Date; value: number; radious: number }[] = [];
-  const redpoint: { key: Date; value: number; radious: number }[] = [];
-  attempts.forEach((attempt) => {
-    if (attempt.type === ATTEMPT_TYPES.working) {
-      working.push({
-        key: attempt.date,
-        value: 1,
-        radious: 1,
-      });
-    } else if (attempt.type === ATTEMPT_TYPES.crux) {
-      crux.push({
-        key: attempt.date,
-        value: 1,
-        radious: 1,
-      });
-    } else if (attempt.type === ATTEMPT_TYPES.linking) {
-      linking.push({
-        key: attempt.date,
-        value: 1,
-        radious: 1,
-      });
-    } else if (attempt.type === ATTEMPT_TYPES.redpoint) {
-      redpoint.push({
-        key: attempt.date,
-        value: 1,
-        radious: 1,
+  const working: { key: Date; value: number; radius: number }[] = [];
+  const crux: { key: Date; value: number; radius: number }[] = [];
+  const linking: { key: Date; value: number; radius: number }[] = [];
+  const redpoint: { key: Date; value: number; radius: number }[] = [];
+
+  let count = [{ multiplier: 1, type: "", date: new Date() }];
+
+  let multiplier = 1;
+
+  for (let i = 0; i < attempts.length; i++) {
+    if (i >= 1) {
+      if (
+        attempts[i].date.toDateString() ===
+          attempts[i - 1].date.toDateString() &&
+        attempts[i].type === attempts[i - 1].type
+      ) {
+        multiplier += 1;
+      } else {
+        multiplier = 1;
+      }
+
+      if (attempts[i].type === ATTEMPT_TYPES.working) {
+        working.push({
+          key: attempts[i].date,
+          value: i,
+          radius: multiplier,
+        });
+      } else if (attempts[i].type === ATTEMPT_TYPES.crux) {
+        crux.push({
+          key: attempts[i].date,
+          value: i,
+          radius: multiplier,
+        });
+      } else if (attempts[i].type === ATTEMPT_TYPES.linking) {
+        linking.push({
+          key: attempts[i].date,
+          value: i,
+          radius: multiplier,
+        });
+      } else if (attempts[i].type === ATTEMPT_TYPES.redpoint) {
+        redpoint.push({
+          key: attempts[i].date,
+          value: i,
+          radius: multiplier,
+        });
+      }
+      count.push({
+        multiplier,
+        type: attempts[i].type,
+        date: attempts[i].date,
       });
     }
-  });
+  }
+
+  console.table(count);
   return [working, crux, linking, redpoint];
 };
