@@ -13,6 +13,7 @@ import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
 import { AttemptsDistributionBarChart } from "@/components/common/Graphs/AttemptsDistributionBarChart";
+import { AttemptsDateTypeBubbleChart } from "@/components/common/Graphs/AttemptsDateTypeBubbleChart";
 
 type FormValues = {
   id: string;
@@ -206,7 +207,8 @@ export default function ClimbingRoute() {
               </div>
               <div className="m-2 flex w-full flex-col justify-center items-center">
                 <div className="max-w-screen-lg h-96">
-                  <AttemptsDistributionBarChart routeId={id}/>
+                  <AttemptsDistributionBarChart attempts={route.data.ClimbingRoutesAttempts}/>
+                  <AttemptsDateTypeBubbleChart attempts={route.data.ClimbingRoutesAttempts}/>
                 </div>
               </div>
             </div>
