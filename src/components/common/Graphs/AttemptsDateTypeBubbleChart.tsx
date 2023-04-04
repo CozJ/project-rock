@@ -4,7 +4,7 @@ import {
   ChartOptions,
   registerables,
 } from "chart.js";
-import { Bubble } from "react-chartjs-2";
+import { Bubble, Line } from "react-chartjs-2";
 import { ClimbingRoutesAttempts } from "@prisma/client";
 import { groupAttemptsByTypeAndDate } from "@/utils/dataFormatters";
 import "chartjs-adapter-date-fns";
@@ -44,49 +44,50 @@ export const AttemptsDateTypeBubbleChart = (
 
   const data: ChartData<
     "bubble",
-    { key: Date; value: number; radious: number }[]
+    { key: Date; value: number; radius: number }[]
   > = {
     datasets: [
       {
-        data: working,
+        type: "bubble",
+        data: [{ key: new Date(), value: 1, radius: 1 }, { key: new Date(), value: 1, radius: 2 }, { key: new Date(), value: 1, radius: 3 }],
         label: ATTEMPT_TYPES.working,
         backgroundColor: "rgba(255, 99, 132, 0.8)",
         parsing: {
           xAxisKey: "key",
           yAxisKey: "value",
-          radiusKey: "radious",
+          radiusKey: "radius",
         },
+      },
+      {
+        data: crux,
+        label: ATTEMPT_TYPES.crux,
+        backgroundColor: "rgba(54, 162, 235, 0.8)",
+        parsing: {
+            xAxisKey: "key",
+            yAxisKey: "value",
+            radiusKey: "radius",
+          },
       },
       {
         data: linking,
         label: ATTEMPT_TYPES.linking,
-        backgroundColor: "rgba(54, 162, 235, 0.8)",
-        parsing: {
-          xAxisKey: "key",
-          yAxisKey: "value",
-          radiusKey: "radious",
-        },
-      },
-
-      {
-        data: crux,
-        label: ATTEMPT_TYPES.crux,
         backgroundColor: "rgba(255, 206, 86, 0.8)",
         parsing: {
-          xAxisKey: "key",
-          yAxisKey: "value",
-          radiusKey: "radious",
-        },
+            xAxisKey: "key",
+            yAxisKey: "value",
+            radiusKey: "radius",
+          },
       },
+
       {
         data: redpoint,
         label: ATTEMPT_TYPES.redpoint,
         backgroundColor: "rgba(75, 192, 192, 0.8)",
         parsing: {
-          xAxisKey: "key",
-          yAxisKey: "value",
-          radiusKey: "radious",
-        },
+            xAxisKey: "key",
+            yAxisKey: "value",
+            radiusKey: "radius",
+          },
       },
     ],
   };
