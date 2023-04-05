@@ -13,7 +13,7 @@ import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
 import { AttemptsDistributionBarChart } from "@/components/common/Graphs/AttemptsDistributionBarChart";
-import { AttemptsDateTypeBubbleChart } from "@/components/common/Graphs/AttemptsDateTypeBubbleChart";
+import { AttemptsDateTypeScatterChart } from "@/components/common/Graphs/AttemptsDateTypeScatterChart";
 
 type FormValues = {
   id: string;
@@ -205,10 +205,16 @@ export default function ClimbingRoute() {
               <div className="flex w-full flex-col">
                 <RouteNotes routeId={id} />
               </div>
-              <div className="m-2 flex w-full flex-col justify-center items-center">
-                <div className="max-w-screen-lg h-96">
-                  <AttemptsDistributionBarChart attempts={route.data.ClimbingRoutesAttempts}/>
-                  <AttemptsDateTypeBubbleChart attempts={route.data.ClimbingRoutesAttempts}/>
+              <div className="m-2 flex w-full flex-col items-center justify-center">
+                <div className="h-96 max-w-screen-lg">
+                  <AttemptsDistributionBarChart
+                    attempts={route.data.ClimbingRoutesAttempts}
+                  />
+                </div>
+                <div className="h-96 max-w-screen-lg">
+                  <AttemptsDateTypeScatterChart
+                    attempts={route.data.ClimbingRoutesAttempts}
+                  />
                 </div>
               </div>
             </div>
