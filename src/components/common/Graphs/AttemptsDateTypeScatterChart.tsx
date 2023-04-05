@@ -11,7 +11,15 @@ import { groupAttemptsByTypeAndDate } from "@/utils/dataFormatters";
 import "chartjs-adapter-date-fns";
 import { ATTEMPT_TYPES } from "@/types/types";
 import { useState, useEffect } from "react";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import {
+  getTommorow,
+  getToday,
+  getAWeekAgo,
+  getAMonthAgo,
+  getThreeMonthsAgo,
+  getSixMonthsAgo,
+  getAYearAgo,
+} from "@/utils/dateUtils";
 
 ChartJS.register(...registerables);
 
@@ -22,33 +30,14 @@ type AttemptsDateTypeScatterChartProps = {
 export const AttemptsDateTypeScatterChart = (
   props: AttemptsDateTypeScatterChartProps
 ) => {
-  const [fromDate, setFrom] = useState<Date | undefined>(undefined);
-  const [toDate, setTo] = useState<Date | undefined>(undefined);
+  const [fromDate, setFrom] = useState<Date | undefined>(getAWeekAgo());
+  const [toDate, setTo] = useState<Date | undefined>(getTommorow()); // offset to account for the fact that the chart will not show the last day
   const [attemptsData, setAttemptsData] = useState<{
     working: Point[];
     crux: Point[];
     linking: Point[];
     redpoint: Point[];
   }>(groupAttemptsByTypeAndDate(props.attempts));
-
-  // const updateAttemptsRange = () => {
-  //   const filteredAttempts = props.attempts.filter((attempt) => {
-  //     if (fromDate && toDate) {
-  //       return (
-  //         attempt.date.toISOString() >= fromDate.toISOString() &&
-  //         attempt.date.toISOString() <= toDate.toISOString()
-  //       );
-  //     } else if (fromDate) {
-  //       return attempt.date.toISOString() >= fromDate.toISOString();
-  //     } else if (toDate) {
-  //       return attempt.date.toISOString() <= toDate.toISOString();
-  //     } else {
-  //       return true;
-  //     }
-  //   });
-
-  //   setAttemptsData(groupAttemptsByTypeAndDate(filteredAttempts));
-  // };
 
   const options: ChartOptions<"scatter"> = {
     responsive: true,
@@ -68,6 +57,10 @@ export const AttemptsDateTypeScatterChart = (
         min: fromDate ? fromDate.toISOString() : undefined,
         max: toDate ? toDate.toISOString() : undefined,
       },
+      y: {
+        min: 0,
+        max: attemptsData.crux.length + attemptsData.linking.length + attemptsData.redpoint.length + attemptsData.working.length,
+      }
     },
   };
 
@@ -105,25 +98,54 @@ export const AttemptsDateTypeScatterChart = (
       <div className="h-full w-full">
         <Scatter data={data} options={options} className="h-full w-full" />
         <div className="flex flex-row items-center justify-center pb-4">
-          <input
-            type="month"
-            className="rounded-lg border p-1"
-            onChange={(e) => {
-              setFrom(new Date(e.target.value));
-              //updateAttemptsRange();
+          <button
+            className="rounded-l bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(getAWeekAgo());
             }}
-          />
-          <span className="flex items-center justify-center px-4">
-            <ArrowForwardIcon />
-          </span>
-          <input
-            type="month"
-            className="rounded-lg border p-1"
-            onChange={(e) => {
-              setTo(new Date(e.target.value));
-              //updateAttemptsRange();
+          >
+            1 Week
+          </button>
+          <button
+            className="bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(getAMonthAgo());
             }}
-          />
+          >
+            1 Month
+          </button>
+          <button
+            className="bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(getThreeMonthsAgo());
+            }}
+          >
+            3 Months
+          </button>
+          <button
+            className="bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(getSixMonthsAgo());
+            }}
+          >
+            6 Months
+          </button>
+          <button
+            className="bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(getAYearAgo());
+            }}
+          >
+            1 Year
+          </button>
+          <button
+            className="rounded-r bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            onClick={() => {
+              setFrom(undefined);
+            }}
+          >
+            All Time
+          </button>
         </div>
       </div>
     </>
