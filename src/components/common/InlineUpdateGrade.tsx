@@ -2,7 +2,7 @@ import { BTG_GRADES, FONT_GRADES, V_GRADES, YDS_GRADES } from "@/types/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import getGradeSchemeFromValue from "@/utils/getGradeSchemeFromValue";
+import getGradeSchemeFromValue from "@/utils/gradeUtils";
 
 type InlineGradeEditProps = {
   value: string | undefined;
