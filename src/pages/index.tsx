@@ -6,6 +6,7 @@ import { ClimbingRoutes } from "@prisma/client";
 import { RouteCard } from "@/components/common/RouteCard";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import AddIcon from "@mui/icons-material/Add";
+import { UserStatusDistributionBarChart } from "@/components/Graphs/UserStatusDistributionBarChart";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -21,8 +22,6 @@ export default function Home() {
 
     if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
 
-    console.log(userRoutes.data);
-
     return (
       <>
         <div className="m-2 flex flex-col items-center p-2">
@@ -33,7 +32,7 @@ export default function Home() {
                 All Routes <ArrowCircleRightIcon />
               </Link>
             </div>
-            <div className="flex max-h-96 w-full flex-row flex-wrap justify-start overflow-y-scroll border-t border-b sm:overflow-hidden">
+            <div className="flex max-h-96 w-full flex-row flex-wrap justify-start overflow-y-scroll border-b border-t sm:overflow-hidden">
               {userRoutes.data?.map((route) => (
                 <div key={route.id} className="w-full p-2 sm:w-1/2 md:w-1/3">
                   <RouteCard
@@ -49,7 +48,7 @@ export default function Home() {
               ))}
             </div>
             <Link type="button" href={"/climbingRoutes/newRoute"}>
-              <div className="my-5 max-h-fit max-w-fit flex flex-row justify-center items-center rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
+              <div className="my-5 flex max-h-fit max-w-fit flex-row items-center justify-center rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100">
                 <span>New Route</span>
                 <AddIcon />
               </div>
@@ -60,7 +59,9 @@ export default function Home() {
                 All Stats <ArrowCircleRightIcon />
               </Link>
             </div>
-            <div className="w-full border-t"></div>
+            <div className="w-full border-t">
+              <UserStatusDistributionBarChart routes={userRoutes.data} />
+            </div>
           </div>
         </div>
       </>

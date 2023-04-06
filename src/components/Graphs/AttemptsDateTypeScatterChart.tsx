@@ -5,15 +5,14 @@ import {
   Point,
   registerables,
 } from "chart.js";
-import { Scatter, Line } from "react-chartjs-2";
+import { Scatter } from "react-chartjs-2";
 import { ClimbingRoutesAttempts } from "@prisma/client";
 import { groupAttemptsByTypeAndDate } from "@/utils/dataFormatters";
 import "chartjs-adapter-date-fns";
 import { ATTEMPT_TYPES } from "@/types/types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   getTommorow,
-  getToday,
   getAWeekAgo,
   getAMonthAgo,
   getThreeMonthsAgo,
@@ -59,8 +58,12 @@ export const AttemptsDateTypeScatterChart = (
       },
       y: {
         min: 0,
-        max: attemptsData.crux.length + attemptsData.linking.length + attemptsData.redpoint.length + attemptsData.working.length,
-      }
+        max:
+          attemptsData.crux.length +
+          attemptsData.linking.length +
+          attemptsData.redpoint.length +
+          attemptsData.working.length,
+      },
     },
   };
 
