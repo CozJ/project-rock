@@ -12,8 +12,8 @@ import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
 import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
-import { AttemptsDistributionBarChart } from "@/components/common/Graphs/AttemptsDistributionBarChart";
-import { AttemptsDateTypeScatterChart } from "@/components/common/Graphs/AttemptsDateTypeScatterChart";
+import { AttemptsDistributionBarChart } from "@/components/Graphs/AttemptsDistributionBarChart";
+import { AttemptsDateTypeScatterChart } from "@/components/Graphs/AttemptsDateTypeScatterChart";
 
 type FormValues = {
   id: string;

@@ -36,12 +36,7 @@ export const AttemptsDistributionBarChart = (
   };
 
   const data = {
-    labels: [
-      ATTEMPT_TYPES.working,
-      ATTEMPT_TYPES.crux,
-      ATTEMPT_TYPES.linking,
-      ATTEMPT_TYPES.redpoint,
-    ],
+    labels: Object.values(ATTEMPT_TYPES),
     datasets: [
       {
         data: attemptsCountByCategory(props.attempts),
