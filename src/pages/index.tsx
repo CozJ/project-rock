@@ -17,10 +17,20 @@ export default function Home() {
     enabled: queryEnabled,
   });
 
+  const signedURL = api.fileManager.getSignedUrl.useQuery({key: "test"}, {
+    enabled: queryEnabled,
+  });
+
   if (session) {
     if (userRoutes.isLoading) return <div>Loading...</div>;
 
     if (userRoutes.error) return <div>Error: {userRoutes.error.message}</div>;
+
+    if (signedURL.isLoading) return <div>Loading...</div>;
+
+    if (signedURL.error) return <div>Error: {signedURL.error.message}</div>;
+
+    console.log(signedURL.data);
 
     return (
       <>
