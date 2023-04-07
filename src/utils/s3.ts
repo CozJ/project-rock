@@ -9,18 +9,23 @@ const s3 = new S3({
 });
 
 export const getSignedUrl = async (key: string) => {
-    const params = {
+
+    const url = await s3.createPresignedPost({
+        Fields: {
+            key: key,
+        },
+        Conditions: [
+            ["starts-with", "$Content-Type", "image/"],
+            ["content-length-range", 0, 1000000],
+        ],
+        Expires: 600,
         Bucket: "project-rock",
-        Key: key,
-        Expires: 60,
-    };
-
-    const url = await s3.getSignedUrl("putObject", params);
-
+    });
     return url;
 }
 
 export const getDownloadUrl = async (key: string) => {
+
     const params = {
         Bucket: "project-rock",
         Key: key,
