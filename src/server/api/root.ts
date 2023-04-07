@@ -3,6 +3,7 @@ import { climbingRoutesRouter } from "@/server/api/routers/climbingRoutesRouter"
 import { climbingRoutesNotesRouter } from "@/server/api/routers/climbingRoutesNotesRouter";
 import { climbingRoutesAttemptsRouter } from "./routers/climbingRoutesAttemptsRouter";
 import { userStatistics } from "./routers/userStatistics";
+import { fileManager } from "./routers/fileManager";
 
 /**
  * This is the primary router for your server.
@@ -14,6 +15,7 @@ export const appRouter = createTRPCRouter({
   climbingRoutesNotes: climbingRoutesNotesRouter,
   climbingRoutesAttempts: climbingRoutesAttemptsRouter,
   userStatistics: userStatistics,
+  fileManager: fileManager,
 });
 
 // export type definition of API
