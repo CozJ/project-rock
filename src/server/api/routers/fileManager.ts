@@ -9,20 +9,40 @@ import {
 } from "@/server/api/trpc";
 
 export const fileManager = createTRPCRouter({
-    getSignedUrl: protectedProcedure.input(
-        z.object({
-            routeId: z.string(),
-        }),
-    ).mutation(async ({ctx, input}) => {
-        return await getSignedUrl(`${ctx.session.user.id}/${input.routeId}/${uuid()}`);
+  getSignedUrl: protectedProcedure
+    .input(
+      z.object({
+        routeId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const data = {
+        routeId: input.routeId,
+        uuid: uuid(),
+      };
+
+      await ctx.prisma.climbingRoutesImages.create({ data });
+
+      return await getSignedUrl(
+        `${ctx.session.user.id}/${input.routeId}/${data.uuid}`
+      );
     }),
 
-    getDownloadUrl: protectedProcedure.input(
-        z.object({
-            routeId: z.string(),
-        }),
-    ).mutation(async ({ctx, input}) => {
-        return await getDownloadUrl(`${ctx.session.user.id}/${input.routeId}/`);
-    }),
+  getDownloadUrl: protectedProcedure
+    .input(
+      z.object({
+        routeId: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
 
-})
+        const image = await ctx.prisma.climbingRoutesImages.findMany({
+            where: {
+                routeId: input.routeId,
+            },
+        });
+        return await getDownloadUrl(
+            `${ctx.session.user.id}/${input.routeId}/${image[0].uuid}`
+        );
+    }),
+});

@@ -15,6 +15,7 @@ import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCoun
 import { AttemptsDistributionBarChart } from "@/components/Graphs/AttemptsDistributionBarChart";
 import { AttemptsDateTypeScatterChart } from "@/components/Graphs/AttemptsDateTypeScatterChart";
 import { FileUploader } from "@/components/files/FileUploader";
+import { RouteFileTray } from "@/components/files/RouteFileTray";
 
 type FormValues = {
   id: string;
@@ -221,6 +222,7 @@ export default function ClimbingRoute() {
               </div>
             </div>
           </div>
+          <RouteFileTray routeId={id} />
         </div>
       </>
     );

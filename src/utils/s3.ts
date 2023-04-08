@@ -18,7 +18,7 @@ export const getSignedUrl = async (key: string) => {
             ["starts-with", "$Content-Type", "image/"],
             ["content-length-range", 0, 1000000],
         ],
-        Expires: 600,
+        Expires: 60,
         Bucket: "project-rock",
     });
     return url;
@@ -29,10 +29,10 @@ export const getDownloadUrl = async (key: string) => {
     const params = {
         Bucket: "project-rock",
         Key: key,
-        Expires: 60,
+        Expires: 30,
     };
 
-    const url = await s3.getSignedUrl("getObject", params);
+    const url = await s3.getSignedUrlPromise("getObject", params);
 
     return url;
 }
