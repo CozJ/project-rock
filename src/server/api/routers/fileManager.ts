@@ -35,14 +35,17 @@ export const fileManager = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-
-        const image = await ctx.prisma.climbingRoutesImages.findMany({
-            where: {
-                routeId: input.routeId,
-            },
-        });
-        return await getDownloadUrl(
-            `${ctx.session.user.id}/${input.routeId}/${image[0].uuid}`
-        );
+      const image = await ctx.prisma.climbingRoutesImages.findMany({
+        where: {
+          routeId: input.routeId,
+        },
+      });
+      return await Promise.all(
+        image.map(async (image) => {
+          return await getDownloadUrl(
+            `${ctx.session.user.id}/${input.routeId}/${image.uuid}`
+          );
+        })
+      );
     }),
 });
