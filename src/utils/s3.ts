@@ -16,7 +16,7 @@ export const getSignedUrl = async (key: string) => {
         },
         Conditions: [
             ["starts-with", "$Content-Type", "image/"],
-            ["content-length-range", 0, 1000000],
+            ["content-length-range", 0, 5000000],
         ],
         Expires: 60,
         Bucket: "project-rock",
