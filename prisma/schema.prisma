@@ -69,6 +69,7 @@ model ClimbingRoutes {
   status                 String                   @db.VarChar(16)
   notes                  ClimbingRoutesNotes[]
   ClimbingRoutesAttempts ClimbingRoutesAttempts[]
+  ClimbingRoutesImages   ClimbingRoutesImages[]
   user                   User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                 String
 }
@@ -86,6 +87,13 @@ model ClimbingRoutesAttempts {
   id      String         @id @default(cuid())
   type    String         @db.VarChar(255)
   date    DateTime       @default(now()) @db.Date
+  route   ClimbingRoutes @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  routeId String
+}
+
+model ClimbingRoutesImages {
+  id      String         @id @default(cuid())
+  uuid    String         @db.VarChar(255)
   route   ClimbingRoutes @relation(fields: [routeId], references: [id], onDelete: Cascade)
   routeId String
 }
