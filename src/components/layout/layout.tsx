@@ -1,6 +1,6 @@
-import { AuthButton } from "@/components/auth/AuthButton";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { ProfileComponent } from "../auth/ProfileComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
             Project-Rock
           </h1>
         </Link>
-        <AuthButton className="rounded-lg bg-slate-600 p-2 px-4 font-semibold text-slate-100" />
+        <ProfileComponent />
       </header>
       <main className={`${inter.className} min-h-full min-w-full`}>
         {children}
