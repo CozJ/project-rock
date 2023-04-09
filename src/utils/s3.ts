@@ -1,11 +1,13 @@
 import { S3 } from "aws-sdk";
 
+import { env } from "@/env.mjs";
+
 //S3 presigned url funcitons for uploading and downloading files
 
 const s3 = new S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION,
+    accessKeyId: env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+    region: env.AWS_REGION,
 });
 
 export const getSignedUrl = async (key: string) => {
