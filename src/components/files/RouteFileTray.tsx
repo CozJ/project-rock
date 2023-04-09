@@ -1,4 +1,5 @@
 import { api } from "@/utils/api";
+import Image from "next/image";
 
 type routeFileTrayProps = {
   routeId: string;
@@ -16,10 +17,12 @@ export const RouteFileTray = (props: routeFileTrayProps) => {
 
   if (files.error) return <div>Error: {files.error.message}</div>;
 
+  console.log(files.data);
+
   return (
     <div className="flex flex-row items-center">
-      {files.data.map((file) => {
-        return <img className=" max-w-sm" src={file}/>;
+      {files.data.map((file: string) => {
+        return <Image key={file} width={200} height={200} src={file} alt=""/>;
       })}
     </div>
   );
