@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthButton } from "./AuthButton";
+import { SignInButton } from "./SignInButton";
 
 export const PromptLogin = () => {
   return (
@@ -18,7 +18,7 @@ export const PromptLogin = () => {
                 </p>
               </div>
               <div className="flex justify-end">
-                <AuthButton className="hover:underline text-slate-200 bg-slate-600 p-1 px-2 rounded-lg hover:bg-slate-800" />
+                <SignInButton />
               </div>
             </div>
           </div>
