@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { EditIcon } from "@/components/svg/EditIcon";
 
 type InlineDateEditProps = {
   value: Date | undefined;
@@ -85,10 +85,7 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
             {value ? value.toDateString() : "Not Completed"}
           </span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon
-              className="text-center text-slate-300"
-              fontSize="small"
-            />
+            <EditIcon />
           </button>
         </div>
       )}

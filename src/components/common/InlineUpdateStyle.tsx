@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { EditIcon } from "@/components/svg/EditIcon";
 import { STYLES } from "@/types/types";
 
 type InlineStyleEditProps = {
@@ -121,10 +121,7 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
             {value ? value : "Not Set"}
           </span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon
-              className="text-center text-slate-300"
-              fontSize="small"
-            />
+            <EditIcon />
           </button>
         </div>
       )}

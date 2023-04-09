@@ -1,7 +1,7 @@
 import { BTG_GRADES, FONT_GRADES, V_GRADES, YDS_GRADES } from "@/types/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { EditIcon } from "@/components/svg/EditIcon";
 import getGradeSchemeFromValue from "@/utils/gradeUtils";
 
 type InlineGradeEditProps = {
@@ -150,10 +150,7 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
             {value ? value : "Not Set"}
           </span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon
-              className="text-center text-slate-300"
-              fontSize="small"
-            />
+            <EditIcon />
           </button>
         </div>
       )}

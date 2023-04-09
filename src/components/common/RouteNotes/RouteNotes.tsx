@@ -1,5 +1,5 @@
 import { api } from "@/utils/api";
-import AddIcon from "@mui/icons-material/Add";
+import { AddIcon } from "@/components/svg/AddIcon";
 import { NoteAccordionSection } from "./components/NoteAccordionSection";
 
 type RouteNotesProps = {
@@ -42,7 +42,7 @@ export const RouteNotes = (props: RouteNotesProps) => {
               });
           }}
         >
-          <AddIcon fontSize="medium" />
+          <AddIcon />
         </button>
       </div>
       <div className="min-h-min w-full">
