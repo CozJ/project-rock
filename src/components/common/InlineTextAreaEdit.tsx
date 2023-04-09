@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { EditIcon } from "@/components/svg/EditIcon";
 
 type InlineTextAreaEditProps = {
   value: string | undefined;
@@ -70,10 +70,7 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
         <div className="flex flex-col items-end">
           <span className={props.defaultStyle}>{value}</span>
           <button onClick={() => setIsEditing(true)}>
-            <BorderColorIcon
-              className="m-2 text-center text-slate-300"
-              fontSize="small"
-            />
+            <EditIcon />
           </button>
         </div>
       )}
