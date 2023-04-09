@@ -14,6 +14,8 @@ import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
 import { AttemptsDistributionBarChart } from "@/components/Graphs/AttemptsDistributionBarChart";
 import { AttemptsDateTypeScatterChart } from "@/components/Graphs/AttemptsDateTypeScatterChart";
+import { FileUploader } from "@/components/files/FileUploader";
+import { RouteFileTray } from "@/components/files/RouteFileTray";
 
 type FormValues = {
   id: string;
@@ -50,6 +52,7 @@ export default function ClimbingRoute() {
       <>
         <div className="m-2 flex flex-col items-center p-2">
           <div className="container flex flex-col justify-between text-slate-600">
+          <FileUploader routeId={id}/>
             <div className="flex w-full flex-row items-center justify-between">
               <InlineTextEdit
                 defaultStyle="text-2xl font-bold pr-2"
@@ -219,6 +222,7 @@ export default function ClimbingRoute() {
               </div>
             </div>
           </div>
+          <RouteFileTray routeId={id} />
         </div>
       </>
     );
