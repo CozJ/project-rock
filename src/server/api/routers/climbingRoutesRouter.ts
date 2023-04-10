@@ -12,21 +12,9 @@ export const climbingRoutesRouter = createTRPCRouter({
       where: {
         userId: ctx.session.user.id,
       },
-    });
-  }),
-
-  getRecentRoutes: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.climbingRoutes.findMany({
-      where: {
-        userId: ctx.session.user.id,
-      },
-      orderBy: {
-        date_started: "desc",
-      },
       include: {
         ClimbingRoutesAttempts: true,
       },
-      take: 9,
     });
   }),
 
