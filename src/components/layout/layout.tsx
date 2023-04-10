@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <header className="flex w-full flex-row items-center justify-between p-2 shadow-xl">
+      <header className="h-16 flex w-full flex-row items-center justify-between p-2 shadow-xl">
         <Link href={"/"}>
           <h1 className="text-2xl font-semibold text-slate-600">
             Project-Rock
@@ -19,7 +19,7 @@ export default function RootLayout({
         </Link>
         <ProfileComponent />
       </header>
-      <main className={`${inter.className} min-h-full min-w-full`}>
+      <main className={`${inter.className} max-h-full max-w-full h-full flex justify-center`}>
         {children}
       </main>
     </>
