@@ -23,7 +23,7 @@ export const UserStatusDistributionBarChart = (
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Route Status Distribution",
       },
     },
     scales: {

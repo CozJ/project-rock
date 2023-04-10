@@ -10,13 +10,14 @@ import { Tabs } from "flowbite-react";
 import { Terrain } from "@/components/svg/Terrain";
 import { Analytics } from "@/components/svg/Analytics";
 import { ProjectBoard } from "@/components/common/ProjectBoard";
+import { StatisticsBoard } from "@/components/common/StatisticsBoard";
 
 export default function Home() {
   const { data: session } = useSession();
 
   const queryEnabled = session ? true : false;
 
-  const userRoutes = api.climbingRoutes.getRecentRoutes.useQuery(undefined, {
+  const userRoutes = api.climbingRoutes.getUserRoutes.useQuery(undefined, {
     enabled: queryEnabled,
   });
 
@@ -33,7 +34,7 @@ export default function Home() {
               <ProjectBoard />
             </Tabs.Item>
             <Tabs.Item title="Stats" icon={Analytics}>
-              <div className="h-full w-full">Stats</div>
+              <StatisticsBoard />
             </Tabs.Item>
           </Tabs.Group>
           <div className="border-t w-full" />
