@@ -4,11 +4,12 @@ import { PromptLogin } from "@/components/auth/promptLogin";
 import Link from "next/link";
 import { RouteCard } from "@/components/common/RouteCard";
 import { AddIcon } from "@/components/svg/AddIcon";
-import TerrainIcon from '@mui/icons-material/Terrain';
+import TerrainIcon from "@mui/icons-material/Terrain";
 import { UserStatusDistributionBarChart } from "@/components/Graphs/UserStatusDistributionBarChart";
 import { Tabs } from "flowbite-react";
 import { Terrain } from "@/components/svg/Terrain";
 import { Analytics } from "@/components/svg/Analytics";
+import { ProjectBoard } from "@/components/common/ProjectBoard";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -26,28 +27,16 @@ export default function Home() {
 
     return (
       <>
-        <div className="m-2 p-2">
-          <Tabs.Group
-            aria-label="Main Page Tabs"
-            style="underline"
-            >
-              <Tabs.Item 
-                title="Project"
-                icon={Terrain}
-                >
-                <div className="w-full h-full">
-                  Projects
-                </div>
-              </Tabs.Item>
-              <Tabs.Item 
-                title="Stats"
-                icon={Analytics}
-              >
-                <div className="w-full h-full">
-                  Stats
-                </div>
-              </Tabs.Item>
+        <div className="m-2 p-2 h-full container">
+          <Tabs.Group aria-label="Main Page Tabs" style="underline">
+            <Tabs.Item title="Project" icon={Terrain}>
+              <ProjectBoard />
+            </Tabs.Item>
+            <Tabs.Item title="Stats" icon={Analytics}>
+              <div className="h-full w-full">Stats</div>
+            </Tabs.Item>
           </Tabs.Group>
+          <div className="border-t w-full" />
         </div>
       </>
     );
