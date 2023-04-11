@@ -39,12 +39,11 @@ export const UserAttemptsScatterChart = (
   }>(groupAttemptsByTypeAndDate(props.attempts));
 
   const options: ChartOptions<"scatter"> = {
-    responsive: true,
     maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
-        text: "Chart.js Bubble Chart",
+        text: "All Attempts",
       },
     },
     scales: {
@@ -99,10 +98,15 @@ export const UserAttemptsScatterChart = (
   return (
     <>
       <div className="h-full w-full">
-        <Scatter data={data} options={options} className="h-full w-full" />
-        <div className="flex flex-row items-center justify-center pb-4">
+        <div className="h-5/6 w-full">
+          <Scatter
+            data={data}
+            options={options}
+          />
+        </div>
+        <div className="flex h-1/6 flex-col items-center justify-center">
           <select
-            className="bg-slate-200 px-4 py-2 font-bold text-slate-800 hover:bg-slate-300"
+            className="h-10 w-full max-w-xs rounded-lg text-sm text-slate-800"
             onChange={(e) => {
               const value = e.target.value;
               if (value === "week") {
