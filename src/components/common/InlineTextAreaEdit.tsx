@@ -42,7 +42,7 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
       {isEditing ? (
         <form
           onSubmit={handleSubmit(onFormSubmit, onErrors)}
-          className="flex flex-col items-end"
+          className="w-full h-full flex flex-col items-end"
         >
           <textarea
             className={props.inputStyle}
@@ -50,24 +50,24 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
             {...register("value", { required: props.required })}
           />
           {errors.value && <span>This field is required</span>}
-          <div className="my-1 w-36 font-semibold text-slate-100">
+          <div className="mx-2 py-1 flex flex-row w-auto font-semibold text-slate-100">
             <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
+              className=" max-h-fit w-16 rounded-l-lg  bg-slate-300 p-1 px-1 hover:bg-slate-800"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
+              className="max-h-fit w-16 rounded-r-lg  bg-slate-600 p-1 px-1 hover:bg-slate-800"
             >
               Save
             </button>
           </div>
         </form>
       ) : (
-        <div className="flex flex-col items-end">
+        <div className="w-full h-full flex flex-col items-end">
           <span className={props.defaultStyle}>{value}</span>
           <button onClick={() => setIsEditing(true)}>
             <EditIcon />

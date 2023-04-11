@@ -51,11 +51,11 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
             {...register("value", { required: props.required })}
           />
           {errors.value && <span>This field is required</span>}
-          <div className="mx-2 flex flex-row w-auto font-semibold text-slate-100">
+          <div className="mx-2 py-1 flex flex-row w-auto font-semibold text-slate-100">
             <button
               type="button"
               onClick={handleCancel}
-              className=" max-h-fit w-16 rounded-l-lg  bg-slate-300 p-1 px-1 font-semibold hover:bg-slate-800"
+              className=" max-h-fit w-16 rounded-l-lg  bg-slate-300 p-1 px-1 hover:bg-slate-800"
             >
               Cancel
             </button>

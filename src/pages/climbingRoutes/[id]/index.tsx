@@ -50,7 +50,7 @@ export default function ClimbingRoute() {
 
     return (
       <>
-        <div className="container m-2 flex h-[650px] flex-col items-center border-b p-2">
+        <div className="container m-2 flex mb-16 flex-col items-center border-b p-2">
           <div className="flex w-full flex-col items-end justify-between p-2 text-slate-600">
          
             <div className="flex w-full flex-row items-center justify-between">
@@ -73,8 +73,8 @@ export default function ClimbingRoute() {
             <div className="flex w-full flex-col justify-center border-t p-4">
               <div className="min-h-min w-full">
                 <InlineTextAreaEdit
-                  defaultStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2"
-                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl rounded-lg pr-2 resize-none"
+                  defaultStyle="w-full h-24 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 resize-none rounded-lg pr-2"
+                  inputStyle="w-full h-24 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 rounded-lg pr-2 resize-none"
                   value={route.data.description as string | undefined}
                   onChange={(value) =>
                     updateRoute

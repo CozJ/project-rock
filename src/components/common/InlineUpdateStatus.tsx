@@ -111,21 +111,21 @@ export const InlineUpdatStatus = (props: InlineStatusEditProps) => {
               </label>
             </div>
             {errors.style && <p className="text-red-500">Style is required</p>}
-            <div className="my-1 w-36 font-semibold text-slate-100">
-              <button
-                type="button"
-                onClick={handleCancel}
-                className=" max-h-fit w-1/2 rounded-l-lg  bg-slate-300 p-2 px-2 font-semibold hover:bg-slate-800"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="max-h-fit w-1/2 rounded-r-lg  bg-slate-600 p-2 px-2 hover:bg-slate-800"
-              >
-                Save
-              </button>
-            </div>
+            <div className="mx-2 py-1 flex flex-row w-auto font-semibold text-slate-100">
+            <button
+              type="button"
+              onClick={handleCancel}
+              className=" max-h-fit w-16 rounded-l-lg  bg-slate-300 p-1 px-1 hover:bg-slate-800"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="max-h-fit w-16 rounded-r-lg  bg-slate-600 p-1 px-1 hover:bg-slate-800"
+            >
+              Save
+            </button>
+          </div>
           </div>
         </form>
       ) : (
