@@ -14,7 +14,7 @@ type RouteCardProps = {
 export const RouteCard = (props: RouteCardProps) => {
   return (
     <Link href={`climbingRoutes/${props.id}`}>
-        <div className="flex h-auto w-64 flex-col rounded-lg border my-2 px-2 py-1 text-slate-600 bg-slate-300">
+        <div className="flex h-auto w-64 flex-col hover:shadow-lg rounded-lg border my-2 px-2 py-1 text-slate-600 bg-slate-300 hover:text-slate-700">
           <span>{}</span>
           <span className="text-sm">{`${props.style} - ${props.grade}`}</span>
           <div className="flex w-full flex-row items-center">
