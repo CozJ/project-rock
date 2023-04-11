@@ -50,14 +50,13 @@ export default function ClimbingRoute() {
 
     return (
       <>
-        <div className="m-2 flex flex-col items-center p-2">
-          <div className="container flex flex-col justify-between text-slate-600">
-          <FileUploader routeId={id}/>
+        <div className="container m-2 flex h-[650px] flex-col items-center border-b p-2">
+          <div className="flex w-full flex-col items-end justify-between p-2 text-slate-600">
+         
             <div className="flex w-full flex-row items-center justify-between">
               <InlineTextEdit
-                defaultStyle="text-2xl font-bold pr-2"
-                formStyle="w-full h-full flex flex-col items-end"
-                inputStyle="w-full text-2xl font-bold rounded-lg p-1 border"
+                defaultStyle="text-2xl font-bold"
+                inputStyle="text-2xl p-px font-bold rounded-lg border"
                 value={route.data.name}
                 onChange={(value) =>
                   updateRoute
@@ -166,7 +165,6 @@ export default function ClimbingRoute() {
                   <div className="m-2 w-full md:w-1/2">
                     <InlineTextEdit
                       defaultStyle="text-xl pr-2"
-                      formStyle="w-full max-w-4xl h-full flex flex-col items-end"
                       inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                       value={route.data.location as string | undefined}
                       onChange={(value) =>
@@ -229,3 +227,5 @@ export default function ClimbingRoute() {
   }
   return <PromptLogin />;
 }
+
+// <FileUploader routeId={id}/>
