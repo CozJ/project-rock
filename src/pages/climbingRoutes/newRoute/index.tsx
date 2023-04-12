@@ -71,7 +71,7 @@ export default function NewRoute() {
             </div>
             <div className="flex w-full flex-col border-t md:flex-row">
               <div className="flex w-full flex-col md:m-4">
-                <label className="mb-2 mt-5 text-lg font-semibold">Name</label>
+                <label className="mb-1 mt-5 h-11 text-lg font-semibold">Name</label>
                 <input
                   className="w-full max-w-4xl rounded-lg border p-1"
                   type="text"
@@ -82,7 +82,7 @@ export default function NewRoute() {
                   <p className="text-red-500">Name is required</p>
                 )}
 
-                <label className="mb-2 mt-5 text-lg font-semibold">
+                <label className="mb-1 mt-5 h-11 text-lg font-semibold">
                   Description
                 </label>
                 <textarea

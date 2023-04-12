@@ -1,4 +1,5 @@
-import { z } from "zod";
+import { promise, z } from "zod";
+import { deleteFile } from "@/utils/s3";
 
 import {
   createTRPCRouter,
@@ -105,8 +106,18 @@ export const climbingRoutesRouter = createTRPCRouter({
         id: z.string(),
       })
     )
-    .mutation(({ ctx, input }) => {
-      return ctx.prisma.climbingRoutes.delete({
+    .mutation(async ({ ctx, input }) => {
+      const images = ctx.prisma.climbingRoutesImages.findMany({
+        where: {
+          routeId: input.id,
+        },
+      });
+
+      (await images).map(async (image) => {
+        await deleteFile(`${ctx.session.user.id}/${input.id}/${image.uuid}`);
+      });
+
+      return await ctx.prisma.climbingRoutes.delete({
         where: {
           id: input.id,
         },
