@@ -99,10 +99,7 @@ export const UserAttemptsScatterChart = (
     <>
       <div className="h-full w-full">
         <div className="h-5/6 w-full">
-          <Scatter
-            data={data}
-            options={options}
-          />
+          <Scatter data={data} options={options} />
         </div>
         <div className="flex h-1/6 flex-col items-center justify-center">
           <select

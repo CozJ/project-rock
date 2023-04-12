@@ -130,10 +130,10 @@ export const STATUS = {
 } as const;
 
 export const STATUS_COLOUR = {
-  [STATUS.new]: "bg-red-500",
-  [STATUS.inProgress]: "bg-blue-500",
-  [STATUS.backlog]: "bg-yellow-500",
-  [STATUS.completed]: "bg-green-500",
+  [STATUS.new]: "bg-red-400",
+  [STATUS.inProgress]: "bg-blue-400",
+  [STATUS.backlog]: "bg-yellow-300",
+  [STATUS.completed]: "bg-green-300",
 } as const;
 
 export const STATUS_DESCRIPTIONS = {

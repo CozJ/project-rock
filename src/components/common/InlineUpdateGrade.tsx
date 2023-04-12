@@ -43,8 +43,9 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
   return (
     <>
       {isEditing ? (
-        <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <div className="flex max-w-4xl flex-col text-slate-100 items-end">
+        <form onSubmit={handleSubmit(onFormSubmit, onErrors)}
+        >
+          <div className="flex h-full w-full flex-col text-slate-100 items-end">
             <div className="flex w-full max-w-4xl flex-row justify-evenly">
               <button
                 className={`h-12 w-1/4 rounded-tl-md bg-slate-600 hover:bg-slate-700 ${
@@ -146,12 +147,12 @@ export const InlineUpdateGrade = (props: InlineGradeEditProps) => {
         </form>
       ) : (
         <div className="flex flex-row items-center">
+          <button className="pr-2" onClick={() => setIsEditing(true)}>
+            <EditIcon />
+          </button>
           <span className={props.defaultStyle}>
             {value ? value : "Not Set"}
           </span>
-          <button onClick={() => setIsEditing(true)}>
-            <EditIcon />
-          </button>
         </div>
       )}
     </>

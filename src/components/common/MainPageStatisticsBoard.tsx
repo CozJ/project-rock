@@ -4,7 +4,7 @@ import { UserStatusDistributionBarChart } from "../Graphs/UserStatusDistribution
 import { UserAttemptsScatterChart } from "../Graphs/UserAttemptsScatterChart";
 import { ClimbingRoutes, ClimbingRoutesAttempts } from "@prisma/client";
 
-export const StatisticsBoard = () => {
+export const MainPageStatisticsBoard = () => {
   const { data: session } = useSession();
 
   const queryEnabled = session ? true : false;
@@ -24,8 +24,6 @@ export const StatisticsBoard = () => {
     });
     return attempts;
   };
-
-  console.log(getAttemptsFromRoutes(userRoutes.data));
 
   return (
     <div className="flex h-[650px] w-full flex-col items-center justify-center">

@@ -8,7 +8,6 @@ export const ProfileComponent = () => {
   const { data: session } = useSession();
 
   if (session) {
-    console.log(session.user.image);
 
     return (
       <Dropdown

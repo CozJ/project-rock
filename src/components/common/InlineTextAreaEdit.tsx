@@ -69,7 +69,7 @@ export const InlineTextAreaEdit = (props: InlineTextAreaEditProps) => {
       ) : (
         <div className="w-full h-full flex flex-col items-end">
           <span className={props.defaultStyle}>{value}</span>
-          <button onClick={() => setIsEditing(true)}>
+          <button className="pl-2" onClick={() => setIsEditing(true)}>
             <EditIcon />
           </button>
         </div>

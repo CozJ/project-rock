@@ -13,7 +13,6 @@ type AttemptsDistributionBarChartProps = {
 export const AttemptsDistributionBarChart = (
   props: AttemptsDistributionBarChartProps
 ) => {
-
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -23,7 +22,7 @@ export const AttemptsDistributionBarChart = (
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Attempts Distribution",
       },
     },
     scales: {

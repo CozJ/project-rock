@@ -21,7 +21,7 @@ export const ProjectBoard = () => {
 
   return (
     <div className="flex h-full w-full justify-center">
-      <div className="flex h-[650px] max-w-min flex-grow flex-row overflow-x-scroll rounded-lg border px-1 shadow-lg">
+      <div className="flex h-[680px] max-w-min flex-grow flex-row overflow-x-scroll rounded-lg border px-1 shadow-lg">
         {Object.values(STATUS).map((status) => (
           <div key={status} className="m-2 h-modal w-72 flex-shrink-0 rounded-lg border bg-slate-100">
             <div className="flex h-14 w-full flex-col border-b p-1 font-semibold text-slate-600">
@@ -33,7 +33,7 @@ export const ProjectBoard = () => {
               </div>
               <span className="text-sm ">{`${STATUS_DESCRIPTIONS[status]}`}</span>
             </div>
-            <div className="h-[32rem] w-full overflow-y-scroll rounded-lg px-2">
+            <div className="h-[536px] w-full overflow-y-scroll rounded-lg px-2">
               {userRoutes.data?.map((route) => {
                 if (route.status === status) // filter should go here
                   return (

@@ -8,6 +8,7 @@
   * {
     scrollbar-width: auto;
     scrollbar-color: #475569 #e2e8f0;
+    overflow-x: hidden;
   }
 
   /* Chrome, Edge, and Safari */

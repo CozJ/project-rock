@@ -61,7 +61,7 @@ export default function NewRoute() {
 
     return (
       <>
-        <div className="container m-2 flex h-[650px] flex-col items-center border-b p-2">
+        <div className="container m-2 mt-10 flex h-[650px] flex-col items-center border-b p-2">
           <form
             className="flex w-full flex-col items-end justify-between p-2 text-slate-600"
             onSubmit={handleSubmit(onFormSubmit, onErrors)}

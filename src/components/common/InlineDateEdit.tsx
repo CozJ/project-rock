@@ -7,7 +7,6 @@ type InlineDateEditProps = {
   onChange: (value: Date | undefined) => void;
   required: boolean;
   defaultStyle: string;
-  formStyle: string;
   inputStyle: string;
 };
 
@@ -51,7 +50,7 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
       {isEditing ? (
         <form
           onSubmit={handleSubmit(onFormSubmit, onErrors)}
-          className={props.formStyle}
+          className="w-full h-full flex flex-col justify-between items-end"
         >
           <input
             className={props.inputStyle}
@@ -80,13 +79,13 @@ export const InlineDateEdit = (props: InlineDateEditProps) => {
           </div>
         </form>
       ) : (
-        <div className="flex flex-row items-center">
+        <div className="w-full h-full flex flex-row items-center">
+          <button className="pr-2" onClick={() => setIsEditing(true)}>
+            <EditIcon />
+          </button>
           <span className={props.defaultStyle}>
             {value ? value.toDateString() : "Not Completed"}
           </span>
-          <button onClick={() => setIsEditing(true)}>
-            <EditIcon />
-          </button>
         </div>
       )}
     </>
