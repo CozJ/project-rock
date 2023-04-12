@@ -43,7 +43,7 @@ export const AttemptsDateTypeScatterChart = (
     plugins: {
       title: {
         display: true,
-        text: "Chart.js Bubble Chart",
+        text: "Attempts",
       },
     },
     scales: {

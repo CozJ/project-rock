@@ -42,7 +42,7 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
       {isEditing ? (
         <form
           onSubmit={handleSubmit(onFormSubmit, onErrors)}
-          className="w-full h-full flex flex-row justify-between items-center"
+          className="w-full h-full flex flex-col justify-between items-end"
         >
           <input
             className={`w-full ${props.inputStyle}`}
@@ -50,8 +50,8 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
             defaultValue={value}
             {...register("value", { required: props.required })}
           />
-          {errors.value && <span>This field is required</span>}
-          <div className="mx-2 py-1 flex flex-row w-auto font-semibold text-slate-100">
+          {errors.value && <span className="m-1 text-red-700">This field is required</span>}
+          <div className="m-2 flex flex-row w-auto font-semibold text-slate-100">
             <button
               type="button"
               onClick={handleCancel}
@@ -69,10 +69,10 @@ export const InlineTextEdit = (props: InlineTextEditProps) => {
         </form>
       ) : (
         <div className="w-full h-full flex flex-row items-center">
-          <span className={props.defaultStyle}>{value}</span>
-          <button className="pl-2" onClick={() => setIsEditing(true)}>
+          <button className="pr-2" onClick={() => setIsEditing(true)}>
             <EditIcon />
           </button>
+          <span className={props.defaultStyle}>{value}</span>
         </div>
       )}
     </>

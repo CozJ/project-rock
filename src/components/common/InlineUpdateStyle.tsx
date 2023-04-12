@@ -43,7 +43,7 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <div className="flex max-w-4xl flex-col items-end text-slate-100">
+          <div className="flex h-full w-full flex-col text-slate-100 items-end">
             <div className="flex w-full max-w-4xl flex-row justify-evenly">
               <label
                 htmlFor={STYLES.sport}
@@ -117,12 +117,12 @@ export const InlineUpdateStyle = (props: InlineStyleEditProps) => {
         </form>
       ) : (
         <div className="flex flex-row items-center">
+          <button className="pr-2" onClick={() => setIsEditing(true)}>
+            <EditIcon />
+          </button>
           <span className={props.defaultStyle}>
             {value ? value : "Not Set"}
           </span>
-          <button onClick={() => setIsEditing(true)}>
-            <EditIcon />
-          </button>
         </div>
       )}
     </>

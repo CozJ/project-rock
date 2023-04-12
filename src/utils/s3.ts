@@ -1,5 +1,4 @@
 import { S3 } from "aws-sdk";
-
 import { env } from "@/env.mjs";
 
 const s3 = new S3({
@@ -16,9 +15,9 @@ export const getSignedUrl = async (key: string) => {
         },
         Conditions: [
             ["starts-with", "$Content-Type", "image/"],
-            ["content-length-range", 0, 5000000],
+            ["content-length-range", 0, 8000000],
         ],
-        Expires: 60,
+        Expires: 600,
         Bucket: env.AWS_BUCKET,
     });
     return url;
@@ -29,7 +28,7 @@ export const getDownloadUrl = async (key: string) => {
     const params = {
         Bucket: env.AWS_BUCKET,
         Key: key,
-        Expires: 30,
+        Expires: 600,
     };
 
     const url = await s3.getSignedUrlPromise("getObject", params);

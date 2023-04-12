@@ -8,7 +8,7 @@ export const PromptLogin = () => {
         <div className="h-1/3 max-w-full bg-slate-400 bg-[url('/login-page-hero.jpg')] bg-cover md:h-full md:w-1/3"></div>
         <div className="h-2/3 w-full md:h-full md:w-2/3 ">
           <div className="flex h-full flex-col items-center justify-center">
-            <div className="text-slate-800">
+            <div className="text-slate-800 m-4">
               <h1 className="flex flex-row border-b pb-2 text-6xl">
                 PROJECT-ROCK
               </h1>
