@@ -1,12 +1,19 @@
 import { api } from "@/utils/api";
 import { AddIcon } from "@/components/svg/AddIcon";
 import { NoteAccordionSection } from "./components/NoteAccordionSection";
+import { ClimbingRoutesNotes } from "@prisma/client";
+import { useState } from "react";
+import { DeleteNoteModal } from "../DeleteNoteModal";
 
 type RouteNotesProps = {
   routeId: string;
 };
 
 export const RouteNotes = (props: RouteNotesProps) => {
+
+  const [selectedNote, setSelectedNote] = useState<ClimbingRoutesNotes | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const Notes = api.climbingRoutesNotes.getNotes.useQuery(
     {
       routeId: props.routeId,
@@ -47,9 +54,10 @@ export const RouteNotes = (props: RouteNotesProps) => {
       </div>
       <div className="min-h-min w-full">
       {Notes.data?.map((note) => (
-        <NoteAccordionSection key={note.id} note={note} />
+        <NoteAccordionSection key={note.id} note={note} setSelectNote={setSelectedNote} openDeleteModal={setShowDeleteModal}/>
       ))}
       </div>
+      {selectedNote && <DeleteNoteModal showModal={showDeleteModal} setShowModal={setShowDeleteModal} noteId={selectedNote?.id} refetch={Notes.refetch} />}
     </>
   );
 };

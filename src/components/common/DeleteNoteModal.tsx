@@ -5,22 +5,24 @@ import router from "next/router";
 type AddAttemptModalProps = {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
-  routeId: string;
+  noteId: string;
+  refetch: () => void;
 };
 
-export const DeleteRouteModal = (props: AddAttemptModalProps) => {
-  const deleteRoute = api.climbingRoutes.deleteRoute.useMutation();
+export const DeleteNoteModal = (props: AddAttemptModalProps) => {
+  const noteRoute = api.climbingRoutesNotes.deleteNote.useMutation();
 
   const handleDelete = () => {
-    deleteRoute.mutateAsync({ id: props.routeId }).then(() => {
+    noteRoute.mutateAsync({ id: props.noteId }).then(() => {
       props.setShowModal(false);
-      router.push("/");
+    }).then(() => {
+      props.refetch();
     });
   };
 
   return (
     <Modal
-      title="Delete Route"
+      title="Delete Note"
       show={props.showModal}
       dismissible={true}
       onClose={() => {
@@ -28,10 +30,10 @@ export const DeleteRouteModal = (props: AddAttemptModalProps) => {
       }}
     >
       <Modal.Header>
-        <h1>Delete Route</h1>
+        <h1>Delete Note</h1>
       </Modal.Header>
       <Modal.Body>
-        <p>Are you sure you want to delete this route?</p>
+        <p>Are you sure you want to delete this Note?</p>
       </Modal.Body>
       <Modal.Footer>
         <div className="flex h-full w-full justify-between">
