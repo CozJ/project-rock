@@ -1,3 +1,4 @@
+import { DeleteIcon } from "@/components/svg/DeleteIcon";
 import { api } from "@/utils/api";
 import { ClimbingRoutesNotes } from "@prisma/client";
 import { InlineTextAreaEdit } from "../../InlineTextAreaEdit";
@@ -5,6 +6,8 @@ import { InlineTextEdit } from "../../InlineTextEdit";
 
 type NoteAccordionSectionProps = {
   note: ClimbingRoutesNotes;
+  setSelectNote: (note: ClimbingRoutesNotes) => void;
+  openDeleteModal: (bool: boolean) => void;
 };
 
 export const NoteAccordionSection = (props: NoteAccordionSectionProps) => {
@@ -14,6 +17,16 @@ export const NoteAccordionSection = (props: NoteAccordionSectionProps) => {
     <div className="my-2 min-h-min w-full rounded-lg bg-slate-100 px-4 py-2">
       <div className="flex h-1/2 w-full flex-col items-start justify-start">
         <div className="flex min-w-full flex-col md:flex-row justify-between">
+            <button
+              type="button"
+              className="text-lg font-bold mr-2"
+              onClick={() => {
+                props.setSelectNote(props.note);
+                props.openDeleteModal(true);
+              }}
+            >
+              <DeleteIcon />
+            </button>
             <InlineTextEdit
               defaultStyle="text-lg font-bold"
               inputStyle="h-10 text-lg font-bold rounded-lg border p-1"
