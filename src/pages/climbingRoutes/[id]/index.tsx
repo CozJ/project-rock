@@ -16,6 +16,8 @@ import { Image } from "@/components/svg/Image";
 import { Description } from "@/components/svg/Description";
 import { Analytics } from "@/components/svg/Analytics";
 import { RouteStatisticsBoard } from "@/components/common/RouteStatisticsBoard";
+import { DeleteRouteModal } from "@/components/common/DeleteRouteModal";
+import { useState } from "react";
 
 type FormValues = {
   id: string;
@@ -42,6 +44,8 @@ export default function ClimbingRoute() {
     { enabled: !!id }
   );
   const updateRoute = api.climbingRoutes.updateRoute.useMutation();
+
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   if (session) {
     if (route.isLoading) return <div>Loading...</div>;
@@ -213,12 +217,15 @@ export default function ClimbingRoute() {
               </Tabs.Item>
             </Tabs.Group>
             <div className="flex w-full items-end justify-end">
-              <button className="m-4 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700">
+              <button className="m-4 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
+                onClick={() => setShowModal(true)}
+                >
                 Delete Route
               </button>
             </div>
           </div>
         </div>
+        <DeleteRouteModal routeId={id} showModal={showModal} setShowModal={setShowModal} />
       </>
     );
   }
