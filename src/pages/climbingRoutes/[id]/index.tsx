@@ -2,20 +2,22 @@ import { PromptLogin } from "@/components/auth/promptLogin";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { RouteCard } from "@/components/common/RouteCard";
-import { useForm } from "react-hook-form";
-import { InlineTextEdit } from "@/components/common/InlineTextEdit";
-import { InlineTextAreaEdit } from "@/components/common/InlineTextAreaEdit";
-import { InlineDateEdit } from "@/components/common/InlineDateEdit";
-import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
-import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
-import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
+import { InlineTextEdit } from "@/components/common/InlineEdit/InlineTextEdit";
+import { InlineTextAreaEdit } from "@/components/common/InlineEdit/InlineTextAreaEdit";
+import { InlineDateEdit } from "@/components/common/InlineEdit/InlineDateEdit";
+import { InlineUpdateGrade } from "@/components/common/InlineEdit/InlineUpdateGrade";
+import { InlineUpdateStyle } from "@/components/common/InlineEdit/InlineUpdateStyle";
+import { InlineUpdatStatus } from "@/components/common/InlineEdit/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
-import { AttemptsDistributionBarChart } from "@/components/Graphs/AttemptsDistributionBarChart";
-import { AttemptsDateTypeScatterChart } from "@/components/Graphs/AttemptsDateTypeScatterChart";
-import { FileUploader } from "@/components/files/FileUploader";
-import { RouteFileTray } from "@/components/files/RouteFileTray";
+import { RouteImages } from "@/components/common/ImageManager/RouteImages";
+import { Tabs } from "flowbite-react";
+import { Image } from "@/components/svg/Image";
+import { Description } from "@/components/svg/Description";
+import { Analytics } from "@/components/svg/Analytics";
+import { RouteStatisticsBoard } from "@/components/common/RouteStatisticsBoard";
+import { DeleteRouteModal } from "@/components/common/Modals/DeleteRouteModal";
+import { useState } from "react";
 
 type FormValues = {
   id: string;
@@ -43,6 +45,8 @@ export default function ClimbingRoute() {
   );
   const updateRoute = api.climbingRoutes.updateRoute.useMutation();
 
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   if (session) {
     if (route.isLoading) return <div>Loading...</div>;
 
@@ -50,14 +54,12 @@ export default function ClimbingRoute() {
 
     return (
       <>
-        <div className="m-2 flex flex-col items-center p-2">
-          <div className="container flex flex-col justify-between text-slate-600">
-          <FileUploader routeId={id}/>
+        <div className="container m-2 mb-16 mt-10 flex flex-col items-center border-b">
+          <div className="flex w-full flex-col items-end justify-between p-2 text-slate-600">
             <div className="flex w-full flex-row items-center justify-between">
               <InlineTextEdit
-                defaultStyle="text-2xl font-bold pr-2"
-                formStyle="w-full h-full flex flex-col items-end"
-                inputStyle="w-full text-2xl font-bold rounded-lg p-1 border"
+                defaultStyle="text-2xl font-bold"
+                inputStyle="text-2xl p-px font-bold rounded-lg border"
                 value={route.data.name}
                 onChange={(value) =>
                   updateRoute
@@ -71,11 +73,11 @@ export default function ClimbingRoute() {
                 required={true}
               />
             </div>
-            <div className="flex w-full flex-col justify-center border-t p-4">
-              <div className="min-h-min w-full">
+            <div className="flex w-full flex-col justify-center border-t pt-6">
+              <div className="min-h-min w-full rounded-lg bg-slate-100 px-4 py-2">
                 <InlineTextAreaEdit
-                  defaultStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl resize-none rounded-lg pr-2"
-                  inputStyle="w-full h-52 overflow-y-auto bg-slate-100 rounded-lg p-2 mt-4 text-xl rounded-lg pr-2 resize-none"
+                  defaultStyle="w-full h-24 overflow-y-auto bg-slate-100 resize-none rounded-lg pr-2"
+                  inputStyle="w-full h-24 overflow-y-auto bg-slate-100 rounded-lg pr-2 resize-none"
                   value={route.data.description as string | undefined}
                   onChange={(value) =>
                     updateRoute
@@ -89,11 +91,15 @@ export default function ClimbingRoute() {
                   required={false}
                 />
               </div>
+              <RouteAttemptsCounterModal
+                id={route.data.id}
+                attempts={route.data.ClimbingRoutesAttempts.length}
+              />
               <div className="min-h-min w-full">
                 <div className="flex w-full flex-col md:flex-row">
                   <div className="m-2 w-full md:w-1/2">
                     <InlineUpdateGrade
-                      defaultStyle="text-xl pr-2"
+                      defaultStyle="text-lg pr-2"
                       value={route.data.grade as string | undefined}
                       onChange={(value) =>
                         updateRoute
@@ -109,7 +115,7 @@ export default function ClimbingRoute() {
                   </div>
                   <div className="m-2 w-full md:w-1/2">
                     <InlineUpdateStyle
-                      defaultStyle="text-xl pr-2"
+                      defaultStyle="text-lg pr-2"
                       value={route.data.style as string | undefined}
                       onChange={(value) =>
                         updateRoute
@@ -127,8 +133,7 @@ export default function ClimbingRoute() {
                 <div className="flex w-full flex-col md:flex-row">
                   <div className="m-2 w-full md:w-1/2">
                     <InlineDateEdit
-                      defaultStyle="text-xl pr-2"
-                      formStyle="w-full max-w-4xl h-full flex flex-col items-end"
+                      defaultStyle="text-lg pr-2"
                       inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                       value={route.data.date_started as Date | undefined}
                       onChange={(value) =>
@@ -145,8 +150,7 @@ export default function ClimbingRoute() {
                   </div>
                   <div className="m-2 w-full md:w-1/2">
                     <InlineDateEdit
-                      defaultStyle="text-xl pr-2"
-                      formStyle="w-full max-w-4xl h-full flex flex-col items-end"
+                      defaultStyle="text-lg"
                       inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                       value={route.data.date_finished as Date | undefined}
                       onChange={(value) =>
@@ -165,8 +169,7 @@ export default function ClimbingRoute() {
                 <div className="flex w-full flex-col md:flex-row">
                   <div className="m-2 w-full md:w-1/2">
                     <InlineTextEdit
-                      defaultStyle="text-xl pr-2"
-                      formStyle="w-full max-w-4xl h-full flex flex-col items-end"
+                      defaultStyle="text-lg pr-2"
                       inputStyle="max-w-ful w-full max-w-4xl rounded-lg border p-1"
                       value={route.data.location as string | undefined}
                       onChange={(value) =>
@@ -183,7 +186,7 @@ export default function ClimbingRoute() {
                   </div>
                   <div className="m-2 w-full md:w-1/2">
                     <InlineUpdatStatus
-                      defaultStyle="text-xl pr-2"
+                      defaultStyle="text-lg pr-2"
                       value={route.data.status as string | undefined}
                       onChange={(value) =>
                         updateRoute
@@ -199,31 +202,30 @@ export default function ClimbingRoute() {
                   </div>
                 </div>
               </div>
-              <div className="m-2 flex w-full flex-col">
-                <RouteAttemptsCounterModal
-                  id={route.data.id}
-                  attempts={route.data.ClimbingRoutesAttempts.length}
-                />
-              </div>
-              <div className="flex w-full flex-col">
-                <RouteNotes routeId={id} />
-              </div>
-              <div className="m-2 flex w-full flex-col items-center justify-center">
-                <div className="h-96 max-w-screen-lg">
-                  <AttemptsDistributionBarChart
-                    attempts={route.data.ClimbingRoutesAttempts}
-                  />
-                </div>
-                <div className="h-96 max-w-screen-lg">
-                  <AttemptsDateTypeScatterChart
-                    attempts={route.data.ClimbingRoutesAttempts}
-                  />
-                </div>
-              </div>
             </div>
           </div>
-          <RouteFileTray routeId={id} />
+          <div className="flex w-full flex-col justify-center border-t pt-6">
+            <Tabs.Group aria-label="Route Tabs" style="underline">
+              <Tabs.Item title="Images" icon={Image}>
+                <RouteImages routeId={id} />
+              </Tabs.Item>
+              <Tabs.Item title="Notes" icon={Description}>
+                <RouteNotes routeId={id} />
+              </Tabs.Item>
+              <Tabs.Item title="Stats" icon={Analytics}>
+                <RouteStatisticsBoard routeId={id} />
+              </Tabs.Item>
+            </Tabs.Group>
+            <div className="flex w-full items-end justify-end">
+              <button className="m-4 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
+                onClick={() => setShowModal(true)}
+                >
+                Delete Route
+              </button>
+            </div>
+          </div>
         </div>
+        <DeleteRouteModal routeId={id} showModal={showModal} setShowModal={setShowModal} />
       </>
     );
   }

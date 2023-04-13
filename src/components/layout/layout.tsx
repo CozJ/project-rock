@@ -1,6 +1,6 @@
-import { AuthButton } from "@/components/auth/AuthButton";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { ProfileComponent } from "../auth/ProfileComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,13 +11,17 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <header className="flex w-full flex-row items-center justify-between p-2 shadow-xl">
+      <header className="h-[7vh] flex w-full flex-row items-center justify-between p-2 shadow-xl">
         <Link href={"/"}>
-          <h1 className="text-2xl font-semibold text-slate-600">Project-Rock</h1>
+          <h1 className="text-2xl font-semibold text-slate-600">
+            Project-Rock
+          </h1>
         </Link>
-        <AuthButton className="rounded-lg bg-slate-600 text-slate-100 p-2 px-4 font-semibold" />
+        <ProfileComponent />
       </header>
-      <main className={inter.className}>{children}</main>
+      <main className={`${inter.className} min-h-[93vh] max-w-full h-full flex justify-center`}>
+        {children}
+      </main>
     </>
   );
 }
