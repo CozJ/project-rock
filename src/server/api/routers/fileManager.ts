@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getDownloadUrl, getSignedUrl } from "@/utils/s3";
+import { deleteFile, getDownloadUrl, getSignedUrl } from "@/utils/s3";
 import { uuid } from "uuidv4";
 
 import {
@@ -48,4 +48,53 @@ export const fileManager = createTRPCRouter({
         })
       );
     }),
+
+  deleteImage: protectedProcedure
+    .input(
+      z.object({
+        routeId: z.string(),
+        uuid: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const image = await ctx.prisma.climbingRoutesImages.deleteMany({
+        where: {
+          routeId: input.routeId,
+          uuid: input.uuid,
+        },
+      });
+
+      await deleteFile(`${ctx.session.user.id}/${input.routeId}/${input.uuid}`);
+
+      return image;
+
+    })
+
 });
+
+
+/*
+deleteRoute: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const images = ctx.prisma.climbingRoutesImages.findMany({
+        where: {
+          routeId: input.id,
+        },
+      });
+
+      (await images).map(async (image) => {
+        await deleteFile(`${ctx.session.user.id}/${input.id}/${image.uuid}`);
+      });
+
+      return await ctx.prisma.climbingRoutes.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+    */
