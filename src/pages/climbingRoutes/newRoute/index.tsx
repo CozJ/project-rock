@@ -61,9 +61,9 @@ export default function NewRoute() {
 
     return (
       <>
-        <div className="m-2 flex flex-col items-center p-2">
+        <div className="container m-2 mt-10 flex h-[650px] flex-col items-center border-b p-2">
           <form
-            className="container flex flex-col items-end justify-between p-2 text-slate-600"
+            className="flex w-full flex-col items-end justify-between p-2 text-slate-600"
             onSubmit={handleSubmit(onFormSubmit, onErrors)}
           >
             <div className="flex w-full flex-row justify-between">
@@ -71,7 +71,7 @@ export default function NewRoute() {
             </div>
             <div className="flex w-full flex-col border-t md:flex-row">
               <div className="flex w-full flex-col md:m-4">
-                <label className="mt-5 mb-2 text-lg font-semibold">Name</label>
+                <label className="mb-1 mt-5 h-11 text-lg font-semibold">Name</label>
                 <input
                   className="w-full max-w-4xl rounded-lg border p-1"
                   type="text"
@@ -82,7 +82,7 @@ export default function NewRoute() {
                   <p className="text-red-500">Name is required</p>
                 )}
 
-                <label className="mt-5 mb-2 text-lg font-semibold">
+                <label className="mb-1 mt-5 h-11 text-lg font-semibold">
                   Description
                 </label>
                 <textarea
@@ -92,7 +92,7 @@ export default function NewRoute() {
                 ></textarea>
               </div>
               <div className="flex w-full flex-col md:m-4">
-                <label className="mt-5 mb-2 text-lg font-semibold">Grade</label>
+                <label className="mb-2 mt-5 text-lg font-semibold">Grade</label>
                 <div className="flex w-full max-w-4xl flex-row justify-evenly">
                   <button
                     className={`h-12 w-1/4 rounded-tl-md bg-slate-600 text-slate-100 hover:bg-slate-700 ${
@@ -165,7 +165,7 @@ export default function NewRoute() {
                   <p className="text-red-500">Grade is required</p>
                 )}
 
-                <label className="mt-5 mb-2 text-lg font-semibold">Style</label>
+                <label className="mb-2 mt-5 text-lg font-semibold">Style</label>
                 <div className="flex w-full max-w-4xl flex-row justify-evenly">
                   <label
                     htmlFor={STYLES.sport}
@@ -220,7 +220,7 @@ export default function NewRoute() {
                   <p className="text-red-500">Style is required</p>
                 )}
 
-                <label className="mt-5 mb-2 text-lg font-semibold">
+                <label className="mb-2 mt-5 text-lg font-semibold">
                   Location
                 </label>
                 <input
@@ -233,7 +233,7 @@ export default function NewRoute() {
                   <p className="text-red-500">Location is required</p>
                 )}
 
-                <label className="mt-5 mb-2 text-lg font-semibold">
+                <label className="mb-2 mt-5 text-lg font-semibold">
                   Date Started
                 </label>
                 <input
@@ -253,7 +253,7 @@ export default function NewRoute() {
                 )}
               </div>
             </div>
-            <button className="w-max rounded-lg bg-slate-600 py-1 px-6 text-lg font-semibold text-white hover:bg-slate-800 max-md:my-8 md:m-4">
+            <button className="w-max rounded-lg bg-slate-600 px-6 py-1 text-lg text-white hover:bg-slate-800 max-md:my-8 md:m-4">
               Submit
             </button>
           </form>

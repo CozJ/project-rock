@@ -129,6 +129,20 @@ export const STATUS = {
   completed: "Completed",
 } as const;
 
+export const STATUS_COLOUR = {
+  [STATUS.new]: "bg-red-400",
+  [STATUS.inProgress]: "bg-blue-400",
+  [STATUS.backlog]: "bg-yellow-300",
+  [STATUS.completed]: "bg-green-300",
+} as const;
+
+export const STATUS_DESCRIPTIONS = {
+  [STATUS.new]: "This route is new",
+  [STATUS.inProgress]: "This route is in progress",
+  [STATUS.backlog]: "This route is in the backlog",
+  [STATUS.completed]: "This route is completed",
+} as const;
+
 export const ATTEMPT_TYPES = {
   working: "Working",
   crux: "Crux",

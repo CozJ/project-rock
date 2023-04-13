@@ -61,4 +61,18 @@ export const climbingRoutesNotesRouter = createTRPCRouter({
         },
       });
     }),
+
+  deleteNote: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.climbingRoutesNotes.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
 });
