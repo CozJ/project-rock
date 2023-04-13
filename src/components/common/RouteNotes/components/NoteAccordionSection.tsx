@@ -1,8 +1,8 @@
 import { DeleteIcon } from "@/components/svg/DeleteIcon";
 import { api } from "@/utils/api";
 import { ClimbingRoutesNotes } from "@prisma/client";
-import { InlineTextAreaEdit } from "../../InlineTextAreaEdit";
-import { InlineTextEdit } from "../../InlineTextEdit";
+import { InlineTextAreaEdit } from "../../InlineEdit/InlineTextAreaEdit";
+import { InlineTextEdit } from "../../InlineEdit/InlineTextEdit";
 
 type NoteAccordionSectionProps = {
   note: ClimbingRoutesNotes;
