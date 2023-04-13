@@ -5,7 +5,7 @@ import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import { useState } from "react";
 import { FileUploadModal } from "./FileUploadModal";
-import { DeleteImageModal } from "@/components/common/DeleteImageModal";
+import { DeleteImageModal } from "@/components/common/Modals/DeleteImageModal";
 
 type routeImagesProps = {
   routeId: string;
@@ -54,7 +54,7 @@ export const RouteImages = (props: routeImagesProps) => {
           <Carousel slide={false}>
             {files.data.map((file: string) => {
               return (
-                <div className=" h-full w-full rounded-lg relative">
+                <div key={file} className=" h-full w-full rounded-lg relative">
                   <div className=" h-full absolute w-full">
                     <Image
                       key={file}

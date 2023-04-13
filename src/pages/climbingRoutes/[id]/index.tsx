@@ -2,12 +2,12 @@ import { PromptLogin } from "@/components/auth/promptLogin";
 import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { InlineTextEdit } from "@/components/common/InlineTextEdit";
-import { InlineTextAreaEdit } from "@/components/common/InlineTextAreaEdit";
-import { InlineDateEdit } from "@/components/common/InlineDateEdit";
-import { InlineUpdateGrade } from "@/components/common/InlineUpdateGrade";
-import { InlineUpdateStyle } from "@/components/common/InlineUpdateStyle";
-import { InlineUpdatStatus } from "@/components/common/InlineUpdateStatus";
+import { InlineTextEdit } from "@/components/common/InlineEdit/InlineTextEdit";
+import { InlineTextAreaEdit } from "@/components/common/InlineEdit/InlineTextAreaEdit";
+import { InlineDateEdit } from "@/components/common/InlineEdit/InlineDateEdit";
+import { InlineUpdateGrade } from "@/components/common/InlineEdit/InlineUpdateGrade";
+import { InlineUpdateStyle } from "@/components/common/InlineEdit/InlineUpdateStyle";
+import { InlineUpdatStatus } from "@/components/common/InlineEdit/InlineUpdateStatus";
 import { RouteNotes } from "@/components/common/RouteNotes/RouteNotes";
 import { RouteAttemptsCounterModal } from "@/components/common/RouteAttemptsCounterModal";
 import { RouteImages } from "@/components/common/ImageManager/RouteImages";
@@ -16,7 +16,7 @@ import { Image } from "@/components/svg/Image";
 import { Description } from "@/components/svg/Description";
 import { Analytics } from "@/components/svg/Analytics";
 import { RouteStatisticsBoard } from "@/components/common/RouteStatisticsBoard";
-import { DeleteRouteModal } from "@/components/common/DeleteRouteModal";
+import { DeleteRouteModal } from "@/components/common/Modals/DeleteRouteModal";
 import { useState } from "react";
 
 type FormValues = {

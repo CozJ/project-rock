@@ -3,7 +3,7 @@ import { AddIcon } from "@/components/svg/AddIcon";
 import { NoteAccordionSection } from "./components/NoteAccordionSection";
 import { ClimbingRoutesNotes } from "@prisma/client";
 import { useState } from "react";
-import { DeleteNoteModal } from "../DeleteNoteModal";
+import { DeleteNoteModal } from "../Modals/DeleteNoteModal";
 
 type RouteNotesProps = {
   routeId: string;
