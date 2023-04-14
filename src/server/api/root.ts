@@ -1,9 +1,9 @@
-import { createTRPCRouter } from "@/server/api/trpc";
-import { climbingRoutesRouter } from "@/server/api/routers/climbingRoutesRouter";
-import { climbingRoutesNotesRouter } from "@/server/api/routers/climbingRoutesNotesRouter";
+import { createTRPCRouter } from "../../server/api/trpc";
+import { climbingRoutesRouter } from "../../server/api/routers/climbingRoutesRouter";
+import { climbingRoutesNotesRouter } from "../../server/api/routers/climbingRoutesNotesRouter";
 import { climbingRoutesAttemptsRouter } from "./routers/climbingRoutesAttemptsRouter";
-import { userStatistics } from "./routers/userStatistics";
-import { fileManager } from "./routers/fileManager";
+import { userStatisticsRouter } from "./routers/userStatisticsRouter";
+import { fileManagerRouter } from "./routers/fileManagerRouter";
 
 /**
  * This is the primary router for your server.
@@ -14,8 +14,8 @@ export const appRouter = createTRPCRouter({
   climbingRoutes: climbingRoutesRouter,
   climbingRoutesNotes: climbingRoutesNotesRouter,
   climbingRoutesAttempts: climbingRoutesAttemptsRouter,
-  userStatistics: userStatistics,
-  fileManager: fileManager,
+  userStatistics: userStatisticsRouter,
+  fileManager: fileManagerRouter,
 });
 
 // export type definition of API

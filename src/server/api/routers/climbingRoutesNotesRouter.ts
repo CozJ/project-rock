@@ -4,7 +4,7 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "@/server/api/trpc";
+} from "../../../server/api/trpc";
 
 export const climbingRoutesNotesRouter = createTRPCRouter({
   getNotes: protectedProcedure

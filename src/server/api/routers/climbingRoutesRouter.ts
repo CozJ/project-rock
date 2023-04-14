@@ -1,11 +1,11 @@
-import { promise, z } from "zod";
-import { deleteFile } from "@/utils/s3";
+import { z } from "zod";
+import { deleteFile } from "../../../utils/s3";
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "@/server/api/trpc";
+} from "../../../server/api/trpc";
 
 export const climbingRoutesRouter = createTRPCRouter({
   getUserRoutes: protectedProcedure.query(({ ctx }) => {

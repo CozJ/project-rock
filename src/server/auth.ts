@@ -5,9 +5,9 @@ import { getServerSession,
 } from "next-auth";
 
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/server/db";
+import { prisma } from "../server/db";
 
-import { env } from "@/env.mjs";
+import { env } from "../env.mjs";
 
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
