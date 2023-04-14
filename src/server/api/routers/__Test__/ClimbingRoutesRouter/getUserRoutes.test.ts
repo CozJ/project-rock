@@ -69,8 +69,9 @@ describe("getUserRoutes", () => {
       prisma: prismaMock,
     });
 
-
-    console.log(await caller.climbingRoutes.getUserRoutes());
+    expect(
+      async () => await caller.climbingRoutes.getUserRoutes()
+    ).rejects.toThrow();
   });
 
   test("no routes", async () => {
