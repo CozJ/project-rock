@@ -6,3 +6,5 @@ describe("home page image should load", () => {
     cy.get("#home-page-image").should("exist");
     })
 })
+
+export {}

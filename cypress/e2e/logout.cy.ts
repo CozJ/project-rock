@@ -21,3 +21,5 @@ describe("user should be able to logout", () => {
     cy.get("#sign-in").should("exist");
   });
 });
+
+export {}

@@ -18,3 +18,5 @@ describe("user should be able to login", () => {
     cy.get("#sign-in").should("not.exist");
   });
 });
+
+export {}
