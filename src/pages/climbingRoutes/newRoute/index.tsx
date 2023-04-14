@@ -66,14 +66,14 @@ export default function NewRoute() {
             className="flex w-full flex-col items-end justify-between p-2 text-slate-600"
             onSubmit={handleSubmit(onFormSubmit, onErrors)}
           >
-            <div className="flex w-full flex-row justify-between">
+            <div className="flex min-h-fit w-full flex-row justify-between">
               <h1 className="text-2xl font-bold">Create a new route</h1>
             </div>
             <div className="flex w-full flex-col border-t md:flex-row">
-              <div className="flex w-full flex-col md:m-4">
-                <label className="mb-1 mt-5 h-11 text-lg font-semibold">Name</label>
+              <div className="flex min-h-fit w-full flex-col md:m-4">
+                <label className="mb-1 min-h-fit mt-5 h-11 text-lg font-semibold">Name</label>
                 <input
-                  className="w-full max-w-4xl rounded-lg border p-1"
+                  className="w-full min-h-fit max-w-4xl rounded-lg border p-1"
                   type="text"
                   placeholder="Name"
                   {...register("name", { required: true })}
@@ -82,18 +82,18 @@ export default function NewRoute() {
                   <p className="text-red-500">Name is required</p>
                 )}
 
-                <label className="mb-1 mt-5 h-11 text-lg font-semibold">
+                <label className="mb-1 min-h-fit mt-5 h-11 text-lg font-semibold">
                   Description
                 </label>
                 <textarea
-                  className="h-40 w-full max-w-4xl resize-none rounded-lg border p-1 md:h-full"
+                  className="h-40 w-full min-h-fit max-w-4xl resize-none rounded-lg border p-1 md:h-full"
                   placeholder="Description"
                   {...register("description")}
                 ></textarea>
               </div>
               <div className="flex w-full flex-col md:m-4">
-                <label className="mb-2 mt-5 text-lg font-semibold">Grade</label>
-                <div className="flex w-full max-w-4xl flex-row justify-evenly">
+                <label className="mb-2 min-h-fit mt-5 text-lg font-semibold">Grade</label>
+                <div className="flex w-full min-h-fit max-w-4xl flex-row justify-evenly">
                   <button
                     className={`h-12 w-1/4 rounded-tl-md bg-slate-600 text-slate-100 hover:bg-slate-700 ${
                       gradeScheme === "V" && "bg-slate-800"
