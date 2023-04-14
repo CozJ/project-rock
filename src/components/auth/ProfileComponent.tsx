@@ -27,7 +27,7 @@ export const ProfileComponent = () => {
             {session.user.email}
           </span>
         </Dropdown.Header>
-        <Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
+        <Dropdown.Item id="log-out" onClick={() => signOut()}>Sign out</Dropdown.Item>
       </Dropdown>
     );
   }

@@ -4,9 +4,9 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "@/server/api/trpc";
+} from "../../../server/api/trpc";
 
-export const userStatistics = createTRPCRouter({
+export const userStatisticsRouter = createTRPCRouter({
   getRouteAttempts: protectedProcedure
     .input(
       z.object({
