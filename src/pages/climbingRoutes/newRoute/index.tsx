@@ -132,7 +132,7 @@ export default function NewRoute() {
                   </button>
                 </div>
                 <select
-                  className="w-full max-w-4xl rounded-b-md border p-1"
+                  className="w-full max-w-4xl min-h-fit rounded-b-md border p-1"
                   placeholder="Grade"
                   {...register("grade", { required: true })}
                 >
@@ -165,8 +165,8 @@ export default function NewRoute() {
                   <p className="text-red-500">Grade is required</p>
                 )}
 
-                <label className="mb-2 mt-5 text-lg font-semibold">Style</label>
-                <div className="flex w-full max-w-4xl flex-row justify-evenly">
+                <label className="mb-2 mt-5 text-lg min-h-fit font-semibold">Style</label>
+                <div className="flex w-full max-w-4xl min-h-fit flex-row justify-evenly">
                   <label
                     htmlFor={STYLES.sport}
                     className={`flex h-12 w-1/3 flex-col rounded-l-lg bg-slate-600 text-center text-slate-100 hover:bg-slate-700 ${
